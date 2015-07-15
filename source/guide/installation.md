@@ -1,4 +1,4 @@
-title: Installation
+title: Instalação
 type: guide
 order: 1
 vue_version: 0.12.6
@@ -7,32 +7,32 @@ min_size: 67.73
 gz_size: 22.00
 ---
 
-> **Compatibility Note:** Vue.js does not support IE8 and below.
+> **Aviso de Compatibilidade:** Vue.js não suporta IE8 ou anterior.
 
-## Standalone
+## Download Direto
 
-Simply download and include with a script tag. `Vue` will be registered as a global variable.
+Simplesmente efetue o download da biblioteca e a inclua utilizando uma tag script. O `Vue` será registrado como uma variável global.
 
 <div id="downloads">
-<a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.js" download>Development Version</a><span class="light info">{{dev_size}}kb, plenty of comments and debug/warning messages.</span>
+<a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.js" download>Versão para Desenvolvimento</a><span class="light info">{{dev_size}}kb, com vários comentários para debug e mensagens sobre erros.</span>
 
-<a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.min.js" download>Production Version</a><span class="light info">{{min_size}}kb minified / {{gz_size}}kb gzipped</span>
+<a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.min.js" download>Versão para Produção</a><span class="light info">{{min_size}}kb minificado / {{gz_size}}kb gzipped</span>
 </div>
 
-Also available on [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.min.js) or [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) (takes some time to sync so the latest version might not be available yet).
+Também disponível em [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.min.js) ou [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) (pode demorar algum tempo para sincronizar com os lançamentos, então a versão mais atual pode não estar disponível ainda).
 
 ## NPM
 
 ``` bash
 $ npm install vue
-# for edge version:
+# para a versão de desenvolvimento:
 $ npm install yyx990803/vue#dev
 ```
 
 ## Bower
 
 ``` bash
-# only stable version is available through Bower
+# somente a versão estável está disponível no Bower
 $ bower install vue
 ```
 
@@ -40,14 +40,14 @@ $ bower install vue
 
 ```js
 var Vue = require('yyx990803/vue')
-// for edge version:
+// para a versão de desenvolvimento:
 var Vue = require('yyx990803/vue@dev')
 ```
 
-## AMD Module Loaders
+## Módulos AMD (AMD Module Loader)
 
-The standalone downloads or versions installed via Bower are wrapped with UMD so they can be used directly as an AMD module.
+As versões offline (standalone) ou instaladas via Bower são carregadas via UMD, tornando possível utilizá-las diretamente como um módulo AMD
 
-## Ready?
+## Pronto?
 
-[Let's Get Started](/guide/).
+[Comece aqui!](/guide/)
