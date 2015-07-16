@@ -1,53 +1,53 @@
-title: Getting Started
+title: Primeiros Passos
 type: guide
 order: 2
 ---
 
-## Introduction
+## Introdução
 
-Vue.js is a library for building interactive web interfaces.
+Vue.js é uma biblioteca para construir aplicações web modernas.
 
-Technically, Vue.js is focused on the [ViewModel](#ViewModel) layer of the MVVM pattern. It connects the [View](#View) and the [Model](#Model) via two way data bindings. Actual DOM manipulations and output formatting are abstracted away into [Directives](#Directives) and [Filters](#Filters).
+Tecnicamente, o Vue.js é focado na camada [ViewModel](#ViewModel) do padrão MVVM. O ViewModel é responsável por conectar a [View](#View) e o [Model](#Model) através de um mecanismo chamado <i>two way data binding</i>. Manipulações no DOM  e a formatação das saídas são abstraídas utilizando [Diretivas](#Diretivas) e [Filtros](#Filtros).
 
-Philosophically, the goal is to provide the benefits of reactive data binding and composable view components with an API that is as simple as possible. It is not a full-blown framework - it is designed to be a view layer that is simple and flexible. You can use it alone for rapid prototyping, or mix and match with other libraries for a custom front-end stack. It's also a natural fit for no-backend services such as Firebase.
+Filosoficamente, o objetivo é fornecer benefícios do <i>reactive data binding</i> e componentes que possam ser combinados, baseados em uma API que seja o mais simples possível. Não é um framework completo - é desenvolvido para ser a camada <i>view</i>, sendo simples e flexível. Você pode utilizar ele somente para uma rápida prototipagem, ou combinar com outras bibliotecas para obter uma <i>stack de front end</i> customizada. Também se encaixa para serviços <i>no-backend</i> como o Firebase.
 
-Vue.js' API is heavily influenced by [AngularJS], [KnockoutJS], [Ractive.js] and [Rivets.js]. Despite the similarities, I believe Vue.js offers a valuable alternative to these existing libraries by finding a sweetspot between simplicity and functionality.
+A API do Vue.js é fortemente influenciada pelos frameworks e bibliotecas [AngularJS], [KnockoutJS], [Ractive.js] e [Rivets.js]. Colocando de lado as similaridades, eu acredito que o Vue.js oferece uma valiosa alternativa à essas bibliotecas por se encaixar em um lugar entre a simplicidade e a funcionalidade.
 
-Even if you are already familiar with some of these terms, it is recommended that you go through the following concepts overview because your notion of these terms might be different from what they mean in the Vue.js context.
+Mesmo que você já esteja familiarizado com alguns desses termos, é recomendado que você acompanhe essa breve revisão dos conceitos, porque sua noção desses termos pode ser diferente do que eles significam no contexto do Vue.js.
 
-## Concepts Overview
+## Visão Geral sobre Conceitos
 
 ### ViewModel
 
-An object that syncs the Model and the View. In Vue.js, every Vue instance is a ViewModel. They are instantiated with the `Vue` constructor or its sub-classes:
+Um objeto que sincroniza o <i>Model</i> e a <i>View</i>. No Vue.js, cada instância do Vue é um ViewModel. Eles são instanciados com construtor do `Vue` ou suas sub-classes:
 
 ```js
 var vm = new Vue({ /* options */ })
 ```
 
-This is the primary object that you will be interacting with as a developer when using Vue.js. For more details see [The Vue Constructor](/api/).
+Esse é o primeiro objeto que você irá interagir como um desenvolvedor que utiliza o Vue.js. Para mais detalhes, veja [O Construtor Vue](/api/).
 
 ### View
 
-The actual DOM that is managed by Vue instances.
+O DOM que é gerenciado pela instância do Vue.
 
 ```js
 vm.$el // The View
 ```
 
-Vue.js uses DOM-based templating. Each Vue instance is associated with a corresponding DOM element. When a Vue instance is created, it recursively walks all child nodes of its root element while setting up the necessary data bindings. After the View is compiled, it becomes reactive to data changes.
+O Vue.js usa um template baseado no DOM. Cada instância do Vue é associada com um elemento correspondente no DOM. Quando uma instância do Vue é criada, ela percorre recursivamente todos os nós filhos do seu elemento pai enquanto configura o <i>data binding</i> necessário. Depois que a View é compilada, ela começa a ser reativa às mudanças nos dados.
 
-When using Vue.js, you rarely have to touch the DOM yourself except in custom directives (explained later). View updates will be automatically triggered when the data changes. These view updates are highly granular with the precision down to a textNode. They are also batched and executed asynchronously for greater performance.
+Ao utilizar o Vue.js, você raramente terá que modificar o DOM por si mesmo, exceto ao usar diretivas customizadas (será explicado posteriormente). As atualizações na View ocorreção automaticamente quando os dados forem modificados. Essas atualizações da view são tão específicas que podem chegar ao nível de um <i>textNode</i>. Elas também são agrupadas e executadas assincronamente para uma melhor performance.
 
 ### Model
 
-A slightly modified plain JavaScript object.
+Um objeto javascript levemente modificado.
 
 ```js
 vm.$data // The Model
 ```
 
-In Vue.js, models are simply plain JavaScript objects, or **data objects**. You can manipulate their properties and Vue instances that are observing them will be notified of the changes. Vue.js achieves transparent reactivity by converting the properties on data objects into ES5 getter/setters. There's no need for dirty checking, nor do you have to explicitly signal Vue to update the View. Whenever the data changes, the View is updated on the next frame.
+No Vue.js, <i>models</i> são apenas objetos Javascript simples, ou **data objects**. Você pode manipular as propriedades deles e as instâncias do Vue que estarão observando esses objetos serão notificados das mudanças. O Vue.js alcança uma reatividade transparente convertendo as propriedades em <i>data objects</i> utilizando getter/setters do ES5. Não há necessidade para checagens mais "poluídas", e você também não precisa chamar explicitamente o Vue para atualizar a View. Não importa quando os dados mudam, a View sempre será atualizada no próximo frame.
 
 Vue instances proxy all properties on data objects they observe. So once an object `{ a: 1 }` has been observed, both `vm.$data.a` and `vm.a` will return the same value, and setting `vm.a = 2` will modify `vm.$data`.
 
@@ -55,7 +55,7 @@ The data objects are mutated in place, so modifying it by reference has the same
 
 One caveat here is that once the observation has been initiated, Vue.js will not be able to detect newly added or deleted properties. To get around that, observed objects are augmented with `$add`, `$set` and `$delete` methods.
 
-### Directives
+### Diretivas
 
 Prefixed HTML attributes that tell Vue.js to do something about a DOM element.
 
@@ -65,7 +65,7 @@ Prefixed HTML attributes that tell Vue.js to do something about a DOM element.
 
 Here the div element has a `v-text` directive with the value `message`. This tells Vue.js to keep the div's textContent in sync with the Vue instance's `message` property.
 
-Directives can encapsulate arbitrary DOM manipulations. For example `v-attr` manipulates an element's attributes, `v-repeat` clones an element based on an Array, `v-on` attaches event listeners... we will cover them later.
+Diretivas can encapsulate arbitrary DOM manipulations. For example `v-attr` manipulates an element's attributes, `v-repeat` clones an element based on an Array, `v-on` attaches event listeners... we will cover them later.
 
 ### Mustache Bindings
 
@@ -95,15 +95,15 @@ Finally, you can add `*` to your mustache bindings to indicate a one-time only i
 {{* onlyOnce }}
 ```
 
-### Filters
+### Filtros
 
-Filters are functions used to process the raw values before updating the View. They are denoted by a "pipe" inside directives or bindings:
+Filtros are functions used to process the raw values before updating the View. They are denoted by a "pipe" inside directives or bindings:
 
 ```html
 <div>{{message | capitalize}}</div>
 ```
 
-Now before the div's textContent is updated, the `message` value will first be passed through the `capitalize` function. For more details see [Filters in Depth](/guide/filters.html).
+Now before the div's textContent is updated, the `message` value will first be passed through the `capitalize` function. For more details see [Filtros in Depth](/guide/filters.html).
 
 ### Components
 
@@ -178,9 +178,9 @@ Also available on [jsfiddle](http://jsfiddle.net/yyx990803/yMv7y/).
 
 You can click on a todo to toggle it, or you can open your Browser's console and play with the `demo` object - for example, change `demo.title`, push a new object into `demo.todos`, or toggle a todo's `done` state.
 
-You probably have a few questions in mind now - don't worry, we'll cover them soon. 
+You probably have a few questions in mind now - don't worry, we'll cover them soon.
 
-Next up: [Directives in Depth](/guide/directives.html).
+Next up: [Diretivas in Depth](/guide/directives.html).
 
 [AngularJS]: http://angularjs.org
 [KnockoutJS]: http://knockoutjs.com
