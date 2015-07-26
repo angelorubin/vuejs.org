@@ -49,47 +49,47 @@ vm.$data // The Model
 
 No Vue.js, <i>models</i> são apenas objetos Javascript simples, ou **data objects**. Você pode manipular as propriedades deles e as instâncias do Vue que estarão observando esses objetos serão notificados das mudanças. O Vue.js alcança uma reatividade transparente convertendo as propriedades em <i>data objects</i> utilizando getter/setters do ES5. Não há necessidade para checagens mais "poluídas", e você também não precisa chamar explicitamente o Vue para atualizar a View. Não importa quando os dados mudam, a View sempre será atualizada no próximo frame.
 
-Vue instances proxy all properties on data objects they observe. So once an object `{ a: 1 }` has been observed, both `vm.$data.a` and `vm.a` will return the same value, and setting `vm.a = 2` will modify `vm.$data`.
+As instâncias do Vue interceptarão e observarão todas as propriedades nos <i>data objects</i>. Então a partir do momento em que um objeto `{ a: 1 }` está sendo observado, tanto `vm.$data.a` quanto `vm.a` retornarão o mesmo valor, e ao setar um valor como `vm.a = 2` também modificará o valor de `vm.$data`.
 
-The data objects are mutated in place, so modifying it by reference has the same effects as modifying `vm.$data`. This makes it possible for multiple Vue instances to observe the same piece of data. In larger applications it is also recommended to treat Vue instances as pure views, and externalize the data manipulation logic into a more discrete store layer.
+Os <i>data objects</i> são modificados em um único local, então modificá-lo via referência tem o mesmo efeito que modificar `vm.$data`. Isso faz possível com que múltiplas instâncias do Vue observem um mesma porção de dados. Em grandes aplicações também é recomendado tratar instâncias do Vue como simples <i>views</i>, assim externalizando a lógica na manipulação dos dados para um layer de armazenamento mais discreto.
 
-One caveat here is that once the observation has been initiated, Vue.js will not be able to detect newly added or deleted properties. To get around that, observed objects are augmented with `$add`, `$set` and `$delete` methods.
+Uma ressalva aqui é que uma vez a observação inicializada, o Vue.js não será capaz de detectar novas propriedades ou propriedades removidas. Para lidar com isso, objetos observados contém os métodoos `$add`, `$set` e `$delete`.
 
 ### Diretivas
 
-Prefixed HTML attributes that tell Vue.js to do something about a DOM element.
+Atributos HTML prefixados que indicam para o Vue que naquele elemento do DOM alguma ação deve ser tomada.
 
 ```html
 <div v-text="message"></div>
 ```
 
-Here the div element has a `v-text` directive with the value `message`. This tells Vue.js to keep the div's textContent in sync with the Vue instance's `message` property.
+Nesse exemplo a div possui uma diretiva `v-text` com o valor `message`. Isso dirá ao Vue.js para manter o textContent dessa div em sincronia com a propriedade `message` de sua instância.
 
-Diretivas can encapsulate arbitrary DOM manipulations. For example `v-attr` manipulates an element's attributes, `v-repeat` clones an element based on an Array, `v-on` attaches event listeners... we will cover them later.
+Diretivas podem encapsular manipulações arbitrárias no DOM. Por exemplo, a diretiva `v-attr` manipula os atributos de um elemento, a diretiva `v-repeat` clona um elemento baseado em um Array, e a diretiva `v-on` inclui <i>event listeners</i>... nós falaremos disso depois.
 
 ### Mustache Bindings
 
-You can also use mustache-style bindings, both in text and in attributes. They are translated into `v-text` and `v-attr` directives under the hood. For example:
+ Você também pode usar <i>mustache-style bindings</i>. Eles serão traduzidos para as diretivas `v-text` e `v-attr` directives under the hood. For example:
 
 ```html
 <div id="person-{{id}}">Hello {{name}}!</div>
 ```
 
-Although it is convenient, there are a few things you need to be aware of:
+Apesar disso ser conveniente, existem alguns pontos que você precisa saber:
 
-<p class="tip">The `src` attribute on an `<image>` element makes an HTTP request when a value is set, so when the template is first parsed it will result in a 404. In this case `v-attr` is preferred.</p>
+<p class="tip">O atributo `src` no elemento `<image>` faz uma requisição HTTP quando um valor é atribuido, então na primeira renderização do template resultará em um erro 404. Nesse caso, o uso da diretiva `v-attr` é recomendada.</p>
 
-<p class="tip">Internet Explorer will remove invalid inline `style` attributes when parsing HTML, so always use `v-style` when binding inline CSS if you want to support IE.</p>
+<p class="tip">O Internet Explorer removerá todos `styles` inline inválidos dos atributos quando converter o HTML, então sempre utilize a diretiva `v-style` ao utilizar CSS inline se você desejar suporte ao IE.</p>
 
-You can use triple mustaches for unescaped HTML, which translates to `v-html` internally:
+Você pode utilizar três chaves para exibir HTML "não escapado (inseguro)", que será traduzido para a diretiva `v-html` internamente:
 
 ``` html
 {{{ safeHTMLString }}}
 ```
 
-However, this can open up windows for potential XSS attacks, therefore it is suggested that you only use triple mustaches when you are absolutely sure about the security of the data source, or pipe it through a custom filter that sanitizes untrusted HTML.
+Entretanto, isso pode abrir brechas para potenciais ataques XSS, então só é sugerido utilizar três chaves quando você tem absoluta certeza sobre a segurança da origem dos seus dados, ou então utilize um filtro que sanitize seus códigos HTML que não são seguros.
 
-Finally, you can add `*` to your mustache bindings to indicate a one-time only interpolation, which does not react to data changes:
+Finalmente, você pode adicionar um `*` ao seu <i>mustache binding</i> para indicar que essa é uma interpolação única, e que não será reativa para mudanças:
 
 ``` html
 {{* onlyOnce }}
@@ -97,17 +97,17 @@ Finally, you can add `*` to your mustache bindings to indicate a one-time only i
 
 ### Filtros
 
-Filtros are functions used to process the raw values before updating the View. They are denoted by a "pipe" inside directives or bindings:
+Filtros são funções utilizadas para processar valores "crus" antes de atualizar a View. Eles são denotados com um "pipe" dentro de diretivas ou bindings:
 
 ```html
 <div>{{message | capitalize}}</div>
 ```
 
-Now before the div's textContent is updated, the `message` value will first be passed through the `capitalize` function. For more details see [Filtros in Depth](/guide/filters.html).
+Agora antes que o textContent da div seja atualizado, o valor de `message` primeiro passará pelo filtro `capitalize`. Par mais detalhes sobre filtros confira [Tudo sobre Filtros](/guide/filters.html).
 
 ### Components
 
-In Vue.js, every component is simply a Vue instance. Components form a nested tree-like hierarchy that represents your application interface. They can be instantiated by a custom constructor returned from `Vue.extend`, but a more declarative approach is registering them with `Vue.component(id, constructor)`. Once registered, they can be declaratively nested in other Vue instance's templates in the form of custom elements:
+No Vue.js, todo componente é uma simples instância do Vue. Componentes formam um conjunto de hierarquias "baseados em árvores" que representam a interface da sua aplicação. Eles podem ser instanciados por um construtor customizado, que é retornado pelo método `Vue.extend`, porém uma maneira mais declarativa de fazer isso é registrá-lo utilizando o `Vue.component(id, constructor)`. Uma vez registrado, eles podem ser afixados em outras instâncias do Vue na forma de elementos customizados.
 
 ``` html
 <my-component>
@@ -115,9 +115,9 @@ In Vue.js, every component is simply a Vue instance. Components form a nested tr
 </my-component>
 ```
 
-This simple mechanism enables declarative reuse and composition of Vue instances in a fashion similar to [Web Components](http://www.w3.org/TR/components-intro/), without the need for latest browsers or heavy polyfills. By breaking an application into smaller components, the result is a highly decoupled and maintainable codebase. For more details, see [Component System](/guide/components.html).
+Esse simples mecanismo possibilita o reuso e a composição de instâncias do Vue de forma parecida com [Web Components](http://www.w3.org/TR/components-intro/), sem a necessidade dos mais recentes ou de polyfills robustos. Ao separar uma aplicação em componentes menores, o resultado é uma base de código altamente desacoplada e com alta manutenibilidade. Para mais detalhes, acesse [Sistema de Componentes](/guide/components.html).
 
-## A Quick Example
+## Um breve exemplo
 
 ``` html
 <div id="demo">
@@ -152,7 +152,7 @@ var demo = new Vue({
 })
 ```
 
-**Result**
+**Resultado**
 
 <div id="demo"><h1>&#123;&#123;title | uppercase&#125;&#125;</h1><ul><li v-repeat="todos" v-on="click: done = !done" class="&#123;&#123;done ? 'done' : ''&#125;&#125;">&#123;&#123;content&#125;&#125;</li></ul></div>
 <script>
@@ -174,13 +174,13 @@ var demo = new Vue({
 })
 </script>
 
-Also available on [jsfiddle](http://jsfiddle.net/yyx990803/yMv7y/).
+Confira esse código no [jsfiddle](http://jsfiddle.net/yyx990803/yMv7y/).
 
-You can click on a todo to toggle it, or you can open your Browser's console and play with the `demo` object - for example, change `demo.title`, push a new object into `demo.todos`, or toggle a todo's `done` state.
+Você pode clicar em um todo para alternar seu estado, ou você pode abrir o console de seu navegador e brincar com o objeto `demo` - por exemplo, mude `demo.title`, e adicione um novo objeto à `demo.todos`, ou alterne um status de <i>done</i> de um todo.
 
-You probably have a few questions in mind now - don't worry, we'll cover them soon.
+Você provavelmente possui algumas questões agora - não se preocupe, nós responderemos elas em breve.
 
-Next up: [Diretivas in Depth](/guide/directives.html).
+Próximo capítulo: [Tudo sobre Diretivas](/guide/directives.html).
 
 [AngularJS]: http://angularjs.org
 [KnockoutJS]: http://knockoutjs.com
