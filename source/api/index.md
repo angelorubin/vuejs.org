@@ -1,30 +1,30 @@
-title: Overview
+title: Visão Geral
 type: api
 order: 1
 ---
 
-## The Vue Constructor
+## O construtor Vue
 
-The `Vue` constructor is the core of Vue.js. It is a constructor function that allows you to create Vue instances. Creating a Vue instance is straightforward:
+O construtor `Vue` é o coração do Vue.js. Trata-se de uma função construtora que lhe permite criar instâncias Vue. Criar uma instância Vue é bastante simples:
 
 ``` js
-var vm = new Vue({ /* options */ })
+var vm = new Vue({ /* opções */ })
 ```
 
-When you instantiate a Vue instance, you need to pass in an option object which can include information about the DOM element, data object, mixin methods, lifecycle callbacks and more. See the full list of [Component Options](/api/options.html).
+Ao se criar uma instância Vue é necessário passar um objeto de configuração, que pode incluir informações sobre o elemento DOM que será observado pelo Vue, o objeto de dados, métodos mixin, escutas para eventos que são disparados durante o ciclo de vida da aplicação e mais. Veja aqui a lista completa de [opções](/api/options.html).
 
-Each Vue instance is essentially a ViewModel (hence the variable name `vm` you will see throughout the docs). It has an associated DOM element `$el`, which is roughly the V in MVVM. It also has an associated JavaScript object `$data`, which corresponds to the M in MVVM. Changing the M results in updates in the V. For two-way bindings, user inputs triggered in the V results in changes in the M. For more details on what properties are available on a Vue instance, check out [Instance Properties](/api/instance-properties.html).
+Cada instância Vue é essencialmente um ViewModel (por isso o nome usado para a variável `vm` que você verá na documentação). Ele contém um elemento DOM `$el` que representa a letra V no em MVVM. Também contém um objeto JavaScript `$data` que corresponde ao M. Mudanças que ocorrem em M resultam em atualizações em V. Para *two-way bindings*, um input do usuário em V resulta em mudanças em M. Para mais detalhes sobre quais são as propriedade disponível numa instância Vue, verifique [Propriedades de Instância](/api/instance-properties.html).
 
-Each Vue instance also has a number of [Instance Methods](/api/instance-methods.html) which cover data observation, event communication and DOM manipulation.
+Cada instância Vue também contém [Métodos de Instância](/api/instance-methods.html) que estão disponíveis para observar dados, comunicação por eventos e manipulação HTML (DOM).
 
-The `Vue` constructor itself also exposes the [Global API](/api/global-api.html), which allow you to extend the `Vue` class, configure global settings and register global custom assets such as components, directives, filters and more.
+O construtor `Vue` expõe a [API Global](/api/global-api.html) que lhe permite estender a classe `Vue`, configurar opções globais e registrar *assets* customizados tais como componentes, diretivas, filtros entre outros.
 
-## Initialization
+## Inicialização
 
-If you provided the `el` option at instantiation, the Vue instance will immediately enter the compilation phase. Otherwise, it will wait until `vm.$mount()` is called before it starts compilation. During the compilation phase, Vue walks through the DOM and collects the directives it runs into, and "links" the data and the DOM with these directives. Once linked, these DOM nodes are now said to be managed by the Vue instance. A DOM node can only be managed by one Vue instance, and should not be compiled more than once.
+Se você informou a opção `el` durante a inicialização, a instância Vue entrará imediatamente na fase de compilação. Caso contrário ela aguardará até que `vm.$mount()` seja chamado, iniciando então a compilação. Durante a fase de compilação o Vue percorrerá todo o DOM e coletará as diretivas que encontrar, "linkando" os dados e o elemento HTML (DOM) com as diretivas. Uma vez feito o *link* estes elementos serão gerenciados pela instância Vue. Um elemento HTML (*DOM Node*) só pode ser gerenciado por uma única instância Vue e não deve ser compilado mais de uma única vez.
 
-## Data Proxying
+## Proxy de Dados
 
-Vue instances proxy access to their `$data` objects, so if you have `vm.$data.msg` you can also access it as `vm.msg`. This might look a bit magical, but is totally optional. You can stick to `vm.$data.msg` for more explicit data access. However it is still important to notice the difference between `vm` and `vm.$data`, since the former cannot be observed by other Vue instances as data.
+As instâncias Vue fazem proxy na hora de acessar os objetos contidos em `$data`. Assim, caso se tenha `vm.$data.msg` também se pode acessar usando simplesmente `vm.msg`. Isso pode soar um tanto quanto mágico mas é totalmente opcional. Você pode decidir por usar `vm.$data.msg` para uma abordagem mais explícita no acesso aos dados. No entanto ainda é importante mencionar a diferença entre `vm` e `vm.$data` uma vez que a primeira não pode ser observada por outras instâncias Vue para mudanças nos dados.
 
-It's also worth noting that data objects do not necessarily belong to a single Vue instance - multiple ViewModels can observe the same piece of data, whether directly as `$data` or nested under it. This is useful when multiple components need to react to a shared global state object.
+Também vale notar que os objetos de dados não pertencem necessariamente a uma única instância Vue - multiplos *ViewModels* podem observar o mesmo grupo de dados, seja diretamente como `$data` ou aninhados (*nested*) abaixo da instância. Isso é útil quando múltiplos componentes precisam reagir a mudança de estado de um objeto global.
