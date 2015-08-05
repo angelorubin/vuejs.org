@@ -36,7 +36,7 @@ new Vue({
 - **Type:** `Vue`
 - **Somente leitura**
 
-É a instância pai da instância atuao, caso esta possua uma.
+É a instância pai da instância atual, caso esta possua uma.
 
 ### vm.$root
 
