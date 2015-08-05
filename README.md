@@ -14,3 +14,4 @@ $ hexo server
 
 ## Contribuidores
 - [@vitorarjol](https://github.com/vitorarjol)
+- [@vedovelli](https://github.com/vedovelli)
