@@ -1,10 +1,10 @@
 title: Instalação
 type: guide
 order: 1
-vue_version: 0.12.6
-dev_size: 219.64
-min_size: 67.73
-gz_size: 22.00
+vue_version: 0.12.9
+dev_size: "227.24"
+min_size: "68.65"
+gz_size: "22.42"
 ---
 
 > **Aviso de Compatibilidade:** Vue.js não suporta IE8 ou anterior.
@@ -19,13 +19,21 @@ Simplesmente efetue o download da biblioteca e a inclua utilizando uma tag scrip
 <a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.min.js" download>Versão para Produção</a><span class="light info">{{min_size}}kb minificado / {{gz_size}}kb gzipped</span>
 </div>
 
+### CDN
+
 Também disponível em [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.min.js) ou [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) (pode demorar algum tempo para sincronizar com os lançamentos, então a versão mais atual pode não estar disponível ainda).
+
+### CSP-compliant build
+
+Alguns ambientes, como os Aplicativos do Google Chrome, obrigam o uso de Políticas de Segurança de Conteúdo (CSP) e não permitem o uso do `new Function()` ao criar expressões. Nesses casos você deve utilizar a build [CSP-compliant build](https://github.com/yyx990803/vue/tree/csp/dist).
 
 ## NPM
 
 ``` bash
 $ npm install vue
-# para a versão de desenvolvimento:
+# for csp-compliant version:
+$ npm install vue@csp
+# para a versão de desenvolvimento(direto do GitHub):
 $ npm install yyx990803/vue#dev
 ```
 
@@ -34,14 +42,6 @@ $ npm install yyx990803/vue#dev
 ``` bash
 # somente a versão estável está disponível no Bower
 $ bower install vue
-```
-
-## Duo
-
-```js
-var Vue = require('yyx990803/vue')
-// para a versão de desenvolvimento:
-var Vue = require('yyx990803/vue@dev')
 ```
 
 ## Módulos AMD (AMD Module Loader)
