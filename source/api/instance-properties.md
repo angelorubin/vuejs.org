@@ -1,26 +1,26 @@
-title: Instance Properties
+title: Propriedades da Instância
 type: api
 order: 3
 ---
 
 ### vm.$el
 
-- **Type:** `HTMLElement`
-- **Read only**
+- **Tipo:** `HTMLElement`
+- **Somente leitura**
 
-The DOM element that the Vue instance is managing. Note that for [Fragment Instances](/guide/best-practices.html#Fragment_Instance), `vm.$el` will return an anchor node that indicates the starting position of the fragment.
+O elemento HTML que a instância Vue está gerenciando. Note que para [Instâncias Fragmentadas](/guide/best-practices.html#Fragment_Instance) `vm.$el` retornará uma elemento âncora (`<a>`) que indica a posição inicial do fragmento.
 
 ### vm.$data
 
-- **Type:** `Object`
+- **Tipo:** `Objeto`
 
-The data object that the Vue instance is observing. You can swap it with a new object. The Vue instance proxies access to the properties on its data object.
+O objeto de dados que a instância Vue está observando. Você pode troca-lo por um novo objeto. A instância Vue faz proxy de acesso aos dados deste objeto.
 
 ### vm.$options
 
-- **Type:** `Object`
+- **Tipo:** `Objeto`
 
-The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
+São opções customizadas passadas na instanciação do objeto Vue. Mostram-se úteis quando se precisa adicionar suas próprias informações à instância Vue:
 
 ``` js
 new Vue({
@@ -34,38 +34,38 @@ new Vue({
 ### vm.$parent
 
 - **Type:** `Vue`
-- **Read only**
+- **Somente leitura**
 
-The parent instance, if the current instance has one.
+É a instância pai da instância atuao, caso esta possua uma.
 
 ### vm.$root
 
 - **Type:** `Vue`
-- **Read only**
+- **Somente leitura**
 
-The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
+É a instância Vue raiz da árvore de componentes. Se a instância atual não possui qualquer pai este valor será a própria instância.
 
 ### vm.$children
 
 - **Type:** `Array<Vue>`
-- **Read only**
+- **Somente leitura**
 
-The direct child components of the current instance.
+Os componentes filhos diretos da instância atual.
 
 ### vm.$
 
-- **Type:** `Object`
-- **Read only**
+- **Tipo:** `Objeto`
+- **Somente leitura**
 
-An object that holds child components that have `v-ref` registered. For more details see [v-ref](/api/directives.html#v-ref).
+Um objeto que guarda os componentes filhos que usam `v-ref`. Para mais detalhes veja [v-ref](/api/directives.html#v-ref).
 
 ### vm.$$
 
-- **Type:** `Object`
-- **Read only**
+- **Tipo:** `Objeto`
+- **Somente leitura**
 
-An object that holds DOM elements that have `v-el` registered. For more details see [v-el](/api/directives.html#v-el).
+Um objeto que guarda elementos HTML que usam `v-el`. Para mais detalhes veja [v-el](/api/directives.html#v-el).
 
-### Meta Properties
+### Propriedades Meta
 
-Instances created by `v-repeat` will also have some meta properties, e.g. `vm.$index`, `vm.$key` and `vm.$value`. For more details, see [the guide on using `v-repeat`](/guide/list.html).
+Instâncias criadas pela diretiva `v-repeat` também conterão propriedades meta. Exemplo: `vm.$index`, `vm.$key` e `vm.$value`. Para mais detalhes veja [o guia de uso de `v-repeat`](/guide/list.html).
