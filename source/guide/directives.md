@@ -1,11 +1,11 @@
-title: Directives
+title: Diretivas
 type: guide
 order: 3
 ---
 
-## Synopsis
+## Resumo
 
-If you have not used AngularJS before, you probably don't know what a directive is. Essentially, a directive is some special token in the markup that tells the library to do something to a DOM element. In Vue.js, the concept of directive is drastically simpler than that in Angular. A Vue.js directive can only appear in the form of a prefixed HTML attribute that takes the following format:
+Se você não utilizou AngularJS anteriormente, então provavelmente não sabe o que é uma diretiva. Essencialmente, uma diretiva é representada por um token especial em um elemento html, e isso fará com que a biblioteca faça algo com esse elemento. Com o Vue.js, esse conceito é drasticamente mais simples do que no Angular. Uma diretiva do Vue.js somente aparecerá no formato de um atributo HTML com um prefixo, que se parecerá com o código a seguir:
 
 ``` html
 <element
@@ -13,41 +13,41 @@ If you have not used AngularJS before, you probably don't know what a directive 
 </element>
 ```
 
-## A Simple Example
+## Um simples exemplo
 
 ``` html
-<div v-text="message"></div>
+<div v-text="mensagem"></div>
 ```
 
-Here the prefix is `v` which is the default. The directive ID is `text` and the expression is `message`. This directive instructs Vue.js to update the div's `textContent` whenever the `message` property on the Vue instance changes.
+Aqui o prefixo é o `v`, que vem como padrão. O ID dessa diretiva é o `text`, e a expressão é a `mensagem`. Essa diretiva diz para o Vue.js atualizar o atributo `textContent` da div sempre que a propriedade `mensagem` da instância do Vue for alterada.
 
-## Inline Expressions
+## Expressões em Linha
 
 ``` html
-<div v-text="'hello ' + user.firstName + ' ' + user.lastName"></div>
+<div v-text="'Olá ' + usuario.nome + ' ' + usuario.sobrenome"></div>
 ```
 
-Here we are using a computed expression instead of a single property key. Vue.js automatically tracks the properties an expression depends on and refreshes the directive whenever a dependency changes. Thanks to async batch updates, even when multiple dependencies change, an expression will only be updated once every event loop.
+Aqui nós estamos utilizando uma *expressão computada* ao invés de uma simples propriedade. O Vue.js irá rastrear automaticamente as propriedades envolvidas na expressão, e sempre que uma delas for atualizada o valor será atualizado também na expressão. Graças às atualizações assíncronas, mesmo quando múltiplas dependências mudarem, as atualizações serão realizadas uma única vez durante o loop do evento.
 
-You should use expressions wisely and avoid putting too much logic in your templates, especially statements with side effects (with the exception of event listener expressions). To discourage the overuse of logic inside templates, Vue.js inline expressions are limited to **one statement only**. For bindings that require more complicated operations, use [Computed Properties](/guide/computed.html) instead.
+Você deve usar expressões com cuidado, e evitar incluir muita lógica nos templates, especialmente expressões com efeitos colaterais (com excessão de expressões para observar eventos). Para desencorajar o excesso de complexidade, as expressões em linha permitem apenas o uso de **uma declaração**. Para *bindings* que precisam de operações mais complicadas, é recomendado o uso de [Propriedades Computadas](/guide/computed.html).
 
-<p class="tip">For security reasons, in inline expressions you can only access properties and methods present on the current context Vue instance and its parents.</p>
+<p class="tip">Por razões de segurança, em expressões em linha você só pode acessar propriedades e métodos presentes no contexto atual da instância do Vue e de seus pais.</p>
 
-## Argument
+## Argumento
 
 ``` html
 <div v-on="click : clickHandler"></div>
 ```
 
-Some directives require an argument before the keypath or expression. In this example the `click` argument indicates we want the `v-on` directive to listen for a click event and then call the `clickHandler` method of the ViewModel instance.
+Algumas diretivas requerem um argumento antes de realizar uma ação. Nesse exemplo, o argumento `click` indica que nós queremos utilizar a diretiva `v-on` para observar um evento de click e então chamar o método `clickHandler` da instância do *ViewModel*.
 
-## Filters
+## Filtros
 
-Filters can be appended to directive keypaths or expressions to further process the value before updating the DOM. Filters are denoted by a single pipe (`|`) as in shell scripts. For more details see [Filters in Depth](/guide/filters.html).
+Filtros podem ser anexados às diretivas ou expressões para processarem os valores antes de atualizar o DOM. Filtros são denotados por um pipe simples (`|`) assim como em shell scripts. Para mais detalhes confira [Tudo sobre Filtros](/guide/filters.html).
 
-## Multiple Clauses
+## Várias cláusulas
 
-You can create multiple bindings of the same directive in a single attribute, separated by commas. Under the hood they are bound as multiple directive instances.
+Você pode adicionar múltiplas parâmetros em uma mesma diretiva de um único atributo, separando com vírgulas. O Vue se encarregará de transformá-los em múltiplas instâncias dessa diretiva.
 
 ``` html
 <div v-on="
@@ -58,36 +58,36 @@ You can create multiple bindings of the same directive in a single attribute, se
 </div>
 ```
 
-## Literal Directives
+## Diretivas Literais
 
-Some directives don't create data bindings - they simply take the attribute value as a literal string. For example the `v-ref` directive:
-
-``` html
-<my-component v-ref="some-string-id"></my-component>
-```
-
-Here `"some-string-id"` is not a reactive expression - Vue.js will not attempt to look it up in the component's data.
-
-In some cases you can also use the mustache syntax to make a literal directive reactive:
+Algumas diretivas não criam *data bindings* - elas simplesmente pegam o valor do atributo como uma string. Por exemplo, veja a diretiva`v-ref`:
 
 ``` html
-<div v-show="showMsg" v-transition="{{dynamicTransitionId}}"></div>
+<my-component v-ref="alguma-string"></my-component>
 ```
 
-However, note that `v-transition` is the only directive that has this feature. Mustache expressions in other literal directives, e.g. `v-ref` and `v-el`, are evaluated **only once**. After the directive has been compiled, it will no longer react to value changes.
+Aqui, `"alguma-string"` não é uma expressão reativa - então o Vue.js não vai tentar encontrá-la nas propriedades do componente.
 
-A full list of literal directives can be found in the [API reference](/api/directives.html#Literal_Directives).
+Em alguns casos você também pode utilizar a sintaxe *mustache* para deixar uma diretiva literal reativa:
 
-## Empty Directives
+``` html
+<div v-show="exibirMsg" v-transition="{{idTransicaoDinamica}}"></div>
+```
 
-Some directives don't even expect an attribute value - they simply do something to the element once and only once. For example the `v-pre` directive:
+Entretanto, note que a diretiva `v-transition` é a única que possui essa característica. Expressões com a sintaxe *mustache* em outras diretivas literais, como a `v-ref` e a `v-el`, terão seu valor processado **somente uma vez**. Depois que a diretiva for compilada, qualquer mudança nesses atributos não causarão mudança no HTML.
+
+Uma lista completa das diretivas literais pode ser encontrada na [API Completa](/api/directives.html#Literal_Directives).
+
+## Diretivas Vazias
+
+Algumas diretivas nem ao mesmo esperam que um valor seja passado como parâmetro - elas simplesmente realizam alguma ação no elemento uma única vez. Por exemplo, a diretiva `v-pre`:
 
 ``` html
 <div v-pre>
-  <!-- markup in here will not be compiled -->
+  <!-- nenhum código markup que for inserido aqui será compilado. -->
 </div>
 ```
 
-A full list of empty directives can be found in the [API reference](/api/directives.html#Empty_Directives).
+Uma lista completa das diretivas vazias pode ser encontrado na [API Completa](/api/directives.html#Empty_Directives).
 
-Next, let's talk about [Filters](/guide/filters.html).
+Agora, vamos falar sobre [Filtros](/guide/filters.html).
