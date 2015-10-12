@@ -1,11 +1,11 @@
-title: Methods and Event Handling
+title: Métodos e Manipulação de Eventos
 type: guide
 order: 9
 ---
 
-## Method Handler
+## Manipulando Eventos
 
-We can then use the `v-on` directive to listen to DOM events:
+Nós podemos usar a diretiva `v-on` para "ouvir" eventos do DOM:
 
 ``` html
 <div id="example">
@@ -13,7 +13,7 @@ We can then use the `v-on` directive to listen to DOM events:
 </div>
 ```
 
-We are binding a click event listener to a method named `greet`. Here's how to define that method in our Vue instance:
+Nós estamos vinculando um evento de clique para um método chamado `greet`. E é assim que definiremos aquele método na nossa instância Vue:
 
 ``` js
 var vm = new Vue({
@@ -21,22 +21,22 @@ var vm = new Vue({
   data: {
     name: 'Vue.js'
   },
-  // define methods under the `methods` object
+  // Definimos nossos métodos dentro do objeto `methods`
   methods: {
     greet: function (event) {
-      // `this` inside methods point to the Vue instance
+      // `this` dentro dos métodos se referencia à instância Vue.
       alert('Hello ' + this.name + '!')
-      // `event` is the native DOM event
+      // `event` é o evento nativo do DOM
       alert(event.target.tagName)
     }
   }
 })
 
-// you can invoke methods in JavaScript too
+// você pode invocar métodos JavaScript também!
 vm.greet() // -> 'Hello Vue.js!'
 ```
 
-Test it yourself:
+Teste você mesmo:
 
 {% raw %}
 <div id="example" class="demo">
