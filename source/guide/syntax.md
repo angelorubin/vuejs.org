@@ -1,57 +1,57 @@
-title: Data Binding Syntax
+title: Sintaxe de Data Binding
 type: guide
 order: 4
 ---
 
-Vue.js uses a DOM-based templating implementation. This means that all Vue.js templates are essentially valid, parsable HTML enhanced with some special attributes. Keep that in mind, since this makes Vue templates fundamentally different from string-based templates.
+O Vue.js utiliza uma implementação de DOM baseado em templates. Isso significa que todos os templates Vue.js são essencialmente um código HTML válido e melhorado com alguns atributos especiais. Mantenha isso em mente, já que isso é o que torna os templates Vue diferentes de templates baseados em string.
 
-## Interpolations
+## Interpolações
 
-### Text
+### Texto
 
-The most basic form of data binding is text interpolation using the "Mustache" syntax (double curly braces):
+A forma mais básica de <i>data binding</i> é uma interpolação com texto, utilizando a sintaxe <i>"Mustache</i> (Duas chaves):
 
 ``` html
 <span>Message: {{ msg }}</span>
 ```
 
-The mustache tag will be replaced with the value of the `msg` property on the corresponding data object. It will also be updated whenever the data object's `msg` property changes.
+A tag <i>mustache</i> será substituída com o valor da propriedade `msg` no objeto de dados correspondente. O texto também será automaticamente atualizado em qualquer momento que o valor da propriedade `msg` seja modificado.
 
-You can also perform one-time interpolations that do not update on data change:
+Você também pode criar interpolações que ocorram somente uma vez:
 
 ``` html
 <span>This will never change: {{* msg }}</span>
 ```
 
-### Raw HTML
+### HTML Puro
 
-The double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use triple mustaches:
+As duas chaves interpreta os dados como um texto simples, não HTML. Para exibir um código HTML, você precisará utilizar três chaves.
 
 ``` html
 <div>{{{ raw_html }}}</div>
 ```
 
-The contents are inserted as plain HTML - data bindings are ignored. If you need to reuse template pieces, you should use [partials](/api/#partial).
+Os conteúdos são exibidos como HTML simples - qualquer <i>data binding</i> será ignorado. Se você precisa reutilizar partes de templates, você deve utilizar [templates parciais](/api/#partial).
 
-<p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use HTML interpolation on trusted content and **never** on user-provided content.</p>
+<p class="tip">Renderização de HTML arbitrário no seu site pode ser muito perigoso, porque ele pode levar à um [Ataque XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Somente utilize a interpolação HTML em conteúdos que você confia e **nunca** em conteúdos fornecidos por usuários.</p>
 
-### Attributes
+### Atributos
 
-Mustaches can also be used inside HTML attributes:
+Chaves também podem ser utilizados dentro de atributos HTML:
 
 ``` html
 <div id="item-{{ id }}"></div>
 ```
 
-However, this can only be used inside native HTML attributes. You cannot use mustaches in custom attributes or Vue.js directives. Don't worry, Vue.js will raise warnings for you when mustaches are used in wrong places.
+Entretanto, esse recurso somente pode ser utilizado dentro de atributos HTML nativos. Você não pode utilizar chaves em atributos personalizados ou em diretivas do Vue.js. Não se preocupe, o Vue.js emitirá alertas para você quando as chaves forem utilizadas em locais errados.
 
-## Binding Expressions
+## Expressões de Ligação
 
-The text we put inside mustache tags are called **binding expressions**. In Vue.js, a binding expression consists of a single JavaScript expression optionally followed by one or more filters.
+O texto que nós colocamos dentro das chaves são chamados **expressões de ligação**. No Vue.js, uma expressão de ligação consiste em uma única expressão JavaScript que pode ser seguida de um ou mais filtros.
 
-### JavaScript Expressions
+### Expressões JavaScript
 
-So far we've only been binding to simple property keys in our templates. But Vue.js actually supports the full power of JavaScript expressions inside data bindings:
+Até agora nós somente vinculamos simples propriedades chave em nossos templates. Mas, na verdade, o Vue.js suporta todo o poder das expressões JavaScript dentro dos <i>data bindings</i>.
 
 ``` html
 {{ number + 1 }}
@@ -61,102 +61,102 @@ So far we've only been binding to simple property keys in our templates. But Vue
 {{ message.split('').reverse().join('') }}
 ```
 
-These expressions will be evaluated in the data scope of the owner Vue instance. One restriction is that each binding can only contain **one single expression**, so the following will **NOT** work:
+Essas expressões serão processadas no escopo dos dados do proprietário da instância Vue. Uma restrição é que cada vínculo pode conter somente uma **única expressão**, então os exemplos a seguir **NÃO** funcionarão:
 
 ``` html
-<!-- this is a statement, not an expression: -->
+<!-- isso é uma afirmação, não uma expressão: -->
 {{ var a = 1 }}
 
-<!-- flow control won't work either, use ternary expressions -->
+<!-- Controle de fluxo também não funcionará, use expressões ternárias -->
 {{ if (ok) { return message } }}
 ```
 
-### Filters
+### Filtros
 
-Vue.js allows you to append optional "filters" to the end of an expression, denoted by the "pipe" symbol:
+O Vue.js permite que você opcionalmente anexe "filtros" no fim de uma expressão, utilizando o símbolo "pipe":
 
 ``` html
 {{ message | capitalize }}
 ```
 
-Here we are "piping" the value of the `message` expression through the built-in `capitalize` filter, which is in fact just a JavaScript function that returns the capitalized value. Vue.js provides a number of built-in filters, and we will talk about how to write your own filters later.
+Aqui nós estamos "passando" o valor da expressão `message` pelo filtro `capitalize`, que já vem com o Vue.js. Esse filtro, na verdade, é somente uma função que retorna o valor com a primeira letra em maiúsculo. O Vue.js fornece alguns filtros por padrão, e nós discutiremos como você pode escrever o seu próprio filtro no futuro.
 
-Note that the pipe syntax is not part of JavaScript syntax, therefore you cannot mix filters inside expressions; you can only append them at the end of an expression.
+Note que a sintaxe utilizando o pipe não é parte da sintaxe Javascript, portanto você não pode misturar os filtros dentro de expressões; você somente pode anexá-los no fim de uma expressão.
 
-Filters can be chained:
+Filtros podem ser encadeados:
 
 ``` html
 {{ message | filterA | filterB }}
 ```
 
-Filters can also take arguments:
+Filtros podem receber parâmetros:
 
 ``` html
 {{ message | filterA 'arg1' arg2 }}
 ```
 
-The filter function always receives the expression's value as the first argument. Quoted arguments are interpreted as plain string, while un-quoted ones will be evaluated as expressions. Here, the plain string `"arg1"` will be passed into the filter as the second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
+A função de filtro sempre recebe o valor da expressão como primeiro parâmetro. Parâmetros dentro de aspas são interpretados como texto simples, enquanto os que não tem aspas são interpretados como expressões. Aqui, o texto simples `"arg1"` será passado para o filtro como segundo argumento, e o valor da expressão `arg2` será processado e passado como terceiro parâmetro.
 
-## Directives
+## Diretivas
 
-Directives are special attributes with the `v-` prefix. Directive attribute values are expected to be **binding expressions**, so the rules about JavaScript expressions and filters mentioned above apply here as well. A directive's job is to reactively apply special behavior to the DOM when the value of its expression changes. Let's review the example we've seen in the introduction:
+Diretivas são atributos especiais que recebem o prefixo `v-`. Espera-se que o valor dos atributos de uma diretiva sejam **expressões de ligação**, então as regras sobre as expressões JavaScript e os filtros que mencionamos acima valem aqui também. O trabalho de uma diretiva é de aplicar um comportamento especial ao DOM reativamente, quando o valor da sua expressão for modificado. Vamos revisar o exemplo que vimos na introdução:
 
 ``` html
 <p v-if="greeting">Hello!</p>
 ```
 
-Here, the `v-if` directive would remove/insert the `<p>` element based on the truthiness of the value of the expression `greeting`.
+Aqui, a diretiva `v-if` irá remover/inserir o elemento `<p>` baseado na veracidade do valor da expressão `greeting`.
 
-### Arguments
+### Parâmetros
 
-Some directives can take an "argument", denoted by a colon after the directive name. For example, the `v-bind` directive is used to reactively update an HTML attribute:
+Algumas diretivas podem receber um "parâmetro", denotado por dois pontos após o nome da diretiva. Por exemplo, a diretiva `v-bind` é utilizada para alterar o valor de um atributo HTML reativamente:
 
 ``` html
 <a v-bind:href="url"></a>
 ```
 
-Here `href` is the argument, which tells the `v-bind` directive to bind the element's `href` attribute to the value of the expression `url`. You may have noticed this achieves the same result as an attribute interpolation using `{% raw %}href="{{url}}"{% endraw %}`: that is correct, and in fact, attribute interpolations are translated into `v-bind` bindings internally.
+Aqui o parâmetro é o `href`, que aponta para a diretiva `v-bind` que o valor do `href`do elemento deve ser igual ao valor da expressão `url`. Você deve ter percebido que isso é o mesmo que escrever o seguinte código utilizando interpolação: `{% raw %}href="{{url}}"{% endraw %}`: isso é verdade, e, na verdade, a interpolação de atributos são traduzidas para a diretiva `v-bind` internamente.
 
-Another example is the `v-on` directive, which listens to DOM events:
+Outro exemplo é a diretiva `v-on`, que é responsável por observar os eventos do DOM:
 
 ``` html
 <a v-on:click="doSomething">
 ```
 
-Here the argument is the event name to listen to. We will talk about event handling in more details too.
+Aqui o parâmetro é o nome do evento que deve ser observado. Nós discutiremos mais sobre como lidar com os eventos em mais detalhes em breve.
 
-### Modifiers
+### Modificadores
 
-Modifiers are special postfixes denoted by a dot, which indicates that a directive should be bound in some special way. For example, the `.literal` modifier tells the directive to interpret its attribute value as a literal string rather than an expression:
+Modificadores são sufixos especiais representados por um ponto, que indica que aquela diretiva deve ser "construída" com um comportamento especial. Por exemplo, o modificador `.literal` indica que aquela diretiva deve utilizar o parâmetro como um texto simples, ao invés de uma expressão. Veja o exemplo:
 
 ``` html
 <a v-bind:href.literal="/a/b/c"></a>
 ```
 
-Of course, this seems pointless because we can just do `href="/a/b/c"` instead of using a directive. The example here is just for demonstrating the syntax. We will see more practical uses of modifiers later.
+Claro, isso parece não fazer sentido porque nós poderíamos somente escrever `href="/a/b/c"` ao invés de utilizar uma diretiva. O exemplo acima é só para demonstrar a sintaxe, e você vai ver mais cenários práticos para esses modificadores ao longo da documentação.
 
-## Shorthands
+## Abreviações
 
-The `v-` prefix serves as a visual cue for identifying Vue-specific attributes in your templates. This is useful when you are using Vue.js to apply dynamic behavior to some existing markup, but can feel verbose for some frequently used directives. At the same time, the need for the `v-` prefix becomes less important when you are building an SPA where Vue.js manages every template. Therefore, Vue.js provides special shorthands for two of the most often used directives, `v-bind` and `v-on`:
+O prefixo `v-if` serve como uma sugestão visual para identificar atributos específicos do Vue.js em seus templates. Isso é útil quando você está aplicando comportamentos dinâmicos para um <i>markup</i> existente, mas pode ser um pouco verboso para diretivas que você utiliza frequentemente. Ao mesmo tempo, o uso do prefixo `v-` se torna menos importante se você estiver construindo uma SPA onde o Vue.js gerencia todo seu template. Portanto, o Vue.js fornece algumas abreviações especiais para duas das mais utilizadas diretivas, `v-bind` e `v-on`:
 
-### `v-bind` Shorthand
+### Abreviação `v-bind`
 
 ``` html
-<!-- full syntax -->
+<!-- sintaxe completa -->
 <a v-bind:href="url"></a>
 
-<!-- shorthand -->
+<!-- abreviação -->
 <a :href="url"></a>
 ```
 
-### `v-on` Shorthand
+### Abreviação `v-on`
 
 ``` html
-<!-- full syntax -->
+<!-- sintaxe completa -->
 <a v-on:click="doSomething"></a>
 
-<!-- shorthand -->
+<!-- abreviação -->
 <a @click="doSomething"></a>
 ```
 
-They may look a bit different from "valid" HTML, but all Vue.js supported browsers can parse it correctly, and they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely appreciate it when you learn more about its usage later.
+Eles podem parecer um pouco diferente de um HTML "válido", mas todos os navegadores que o Vue.js suporta convertem eles corretamente, e eles não aparecem no HTML após ser renderizado. Essa sintaxe com abreviação é completamente opcional, e você deve começar a gostar mais dela quando você aprender mais sobre seu uso no futuro.
