@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Introdução - vue.js</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Source+Code+Pro|Dosis:300,500' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <script>
+            window.PAGE_TYPE = "guide"
+        </script>
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'vuejs.org');
+  ga('send', 'pageview');
+</script>
+        <script src="/js/vue.js"></script>
+    </head>
+    <body>
+        <div id="mobile-bar">
+            <a class="menu-button"></a>
+            <a class="logo" href="/"></a>
+        </div>
+        
+            <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>Vue.js</span>
+    </a>
+    <ul id="nav">
+        <li>
+  <form id="search-form">
+    <input type="text" id="search-query" class="st-default-search-input">
+  </form>
+</li>
+<li><a href="/guide/" class="nav-link current">Guide</a></li>
+<li><a href="/api/" class="nav-link">API</a></li>
+<li><a href="/examples/" class="nav-link">Examples</a></li>
+<li><a href="https://github.com/yyx990803/vue" class="nav-link" target="_blank">GitHub</a></li>
+<li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">Forum</a></li>
+<li><a href="https://gitter.im/yyx990803/vue" class="nav-link" target="_blank">Chat</a></li>
+
+    </ul>
+</div>
+            <div id="main">
+                
+                    
+    <div class="sidebar">
+    <ul class="main-menu">
+        <li>
+  <form id="search-form">
+    <input type="text" id="search-query" class="st-default-search-input">
+  </form>
+</li>
+<li><a href="/guide/" class="nav-link current">Guide</a></li>
+<li><a href="/api/" class="nav-link">API</a></li>
+<li><a href="/examples/" class="nav-link">Examples</a></li>
+<li><a href="https://github.com/yyx990803/vue" class="nav-link" target="_blank">GitHub</a></li>
+<li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">Forum</a></li>
+<li><a href="https://gitter.im/yyx990803/vue" class="nav-link" target="_blank">Chat</a></li>
+
+    </ul>
+    <div class="list">
+        <h2>Guide</h2>
+        <ul class="menu-root">
+            
+                <li>
+                    <a href="/guide/installation.html" class="sidebar-link">Instalação</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/index.html" class="sidebar-link current">Introdução</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/instance.html" class="sidebar-link">A Instância Vue</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/syntax.html" class="sidebar-link">Data Binding Syntax</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/computed.html" class="sidebar-link">Computed Properties</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/class-and-style.html" class="sidebar-link">Class and Style Bindings</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/conditional.html" class="sidebar-link">Conditional Rendering</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/list.html" class="sidebar-link">List Rendering</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/events.html" class="sidebar-link">Methods and Event Handling</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/forms.html" class="sidebar-link">Form Input Bindings</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/transitions.html" class="sidebar-link">Transitions</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/components.html" class="sidebar-link">Components</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/reactivity.html" class="sidebar-link">Reactivity in Depth</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/custom-directive.html" class="sidebar-link">Custom Directives</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/custom-filter.html" class="sidebar-link">Custom Filters</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/mixins.html" class="sidebar-link">Mixins</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/plugins.html" class="sidebar-link">Plugins</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/application.html" class="sidebar-link">Building Large-Scale Apps</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/comparison.html" class="sidebar-link">Comparison with Other Frameworks</a>
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+<div class="content guide with-sidebar">
+    <h1>Introdução</h1>
+    <div id="ad">
+        <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+    </div>
+    <p>Vue.js (pronúncia: /vjuː/, assim como a palavra <strong>view</strong>) é uma biblioteca para criar interfaces web interativas. O objetivo do Vue.js é disponibilizar os benefícios do <strong><i>data binding</i> reativo</strong> e a permitir a <strong>composição de <i>views</i> utilizando compoenentes</strong>, mantendo a API o mais simples possível.</p>
+<p>O Vue.js por si mesmo não é um “framework completo” - é focado para ser exclusivamente a camada de <i>view</i>. Por isso que é muito simples de integrá-lo com outras bibliotecas ou projetos existentes. Por outro lado, quando utilizado com as ferramentas corretas, o Vue.js é perfeitamente capaz de criar <i>Single-Page Applications (SPA’s)</i> sofisticadas.</p>
+<p>Se você é um desenvolvedor frontend experiente e deseja saber mais como o Vue.js se compara a outras bibliotecas e frameworks, confira o guia de <a href="comparison.html">Comparação com outros Frameworks</a>; se você está mais interessado em saber como trabalhar com o Vue.js em aplicações de larga escala, confira a seção <a href="application.html">Construindo aplicações de larga escala</a>.</p>
+<h2 id="Data_Binding_Reativo"><i>Data Binding</i> Reativo</h2><p>No núcleo do Vue.js, o que faz com que seja extremamente simples para você manter seus dados sincronizados com o DOM é um sistema de <i>Data Binding</i> reativo. Quando utilizamos jQuery para manualmente manipular o DOM, o código que escrevemos é geralmente imperativo, repetitivo e propenso a erros. O Vue.js incorpora o conceito de <strong><i>view</i> orientada a dados</strong>. Simplificando, isso significa que nós utilizamos nosso HTML comum para “vincular” o DOM aos dados subjacentes. Uma vez que esse vínculo é criado, o DOM manterá os dados sincronizados. Em qualquer momento que você modifique os dados, o DOM vai atualizar com a informação mais recente. Como resultado disso, a maior parte da lógica de nossa aplicação é agora diretamente ligada à manipulação dos dados, ao invés de possíveis manipulações diretas do DOM. Isso faz com que nosso código seja mais fácil de ser escrito, mais simples de ser entendido e manipulado futuramente.</p>
+<p><img src="/images/mvvm.png" alt="MVVM"></p>
+<p>O exemplo mais simples possível:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- essa é nossa View --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"example-1"</span>&gt;</span></span><br><span class="line">  Hello &#123;&#123; name &#125;&#125;!</span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// esse é nosso Model</span></span><br><span class="line"><span class="keyword">var</span> exampleData = &#123;</span><br><span class="line">  name: <span class="string">'Vue.js'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// cria uma instância do Vue, ou um "ViewModel"</span></span><br><span class="line"><span class="comment">// que vincula a View com o Model</span></span><br><span class="line"><span class="keyword">var</span> exampleVM = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#example-1'</span>,</span><br><span class="line">  data: exampleData</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>Resultado:<br>
+<div id="example-1" class="demo">Hello {{ name }}!</div>
+<script>
+var exampleData = {
+  name: 'Vue.js'
+}
+var exampleVM = new Vue({
+  el: '#example-1',
+  data: exampleData
+})
+</script>
+</p>
+<p>Isso é muito similar a somente renderizar um html, mas o Vue.js fez várias coisas por trás das cortinas. Os dados e o DOM estão agora vinculados e tudo agora é <strong>reativo</strong>. Como nós sabemos? Simplesmente abra as ferramentas de desenvolvedor do seu navegador e modifique o valor da propriedade <code>exampleData.name</code>.Você deverá ser o exemplo acima ser atualizado conforme no valor que você digitar.</p>
+<p>Note que nós não precisamos reescrever nenhum código de manipulação do DOM: o template HTML, melhorado com os vínculos, agora é um mapeamento declarativo dos dados, que são transformados em simples objetos Javascript. Nossa <i>view</i> está completamente orientada a dados.</p>
+<p>Vamos olhar um segundo exemplo:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"example-2"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">p</span> <span class="attribute">v-if</span>=<span class="value">"greeting"</span>&gt;</span>Hello!<span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> exampleVM2 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#example-2'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    greeting: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<div id="example-2" class="demo">
+  <span v-if="greeting">Hello!</span>
+</div>
+<script>
+var exampleVM2 = new Vue({
+  el: '#example-2',
+  data: {
+    greeting: true
+  }
+})
+</script>
+
+<p>Aqui nós estamos visualizando algo novo. O atributo <code>v-if</code> que você está vendo é chamado de <strong>Diretiva</strong>. Diretivas contém o prefixo <code>v-</code> para indicar que eles são atributos especiais fornecidos pelo Vue.js, e como você deve ter advinhado, elas aplicam um comportamento reativo especial para o DOM renderizado. Teste você mesmo e atribua o valor <code>false</code> para a propriedade <code>exampleVM2.greeting</code> no seu console. VOcê deverá ver a mensagem “Hello!” desaparecer.</p>
+<p>Esse segundo exemplo demonstra que não somente podemos vincular o DOM com os dados, mas nós também podemos vincular a <strong>estrutura</strong> do DOM aos dados. Mais que isso, o Vue.js também disponibiliza um poderoso sistema de efeitos de transição que podem aplicar efeitos efeitos automáticos ao remover ou inserir elementos com o Vue.</p>
+<p>Existem algumas outras diretivas, cada uma com sua funcionalidade. Por exemplo, a diretiva <code>v-for</code> é utilizada para exibir itens em um Array, ou a diretiva <code>v-bind</code> é utilizada para vincular dados à atributos HTML. Nós discutiremos a sintaxe completa de <i>data binding</i> com mais detalhes futuramente.</p>
+<h2 id="Sistema_de_Componentes">Sistema de Componentes</h2><p>O Sistema de Componentes é outro importante conceito no Vue.js, porque é uma abstração que nos permite construir aplicações em larga escala focando em componentes menores, com sua própria lógica, e geralmente reutilizáveis. Quando nós pensamos sobre isso, praticamente qualquer aplicação pode ser abstraída em uma árvore de componentes:</p>
+<p><img src="/images/components.png" alt="Component Tree"></p>
+<p>Na verdade, uma típica aplicação de grande porte criada com o Vue.js pode ser representada com a figura da direita - uma árvore de componentes. Nós veremos muito mais sobre componentes mais a frente nesse guia, mas aqui está um exemplo (imaginário) do que um template HTML se pareceria utilizando componentes:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">app-nav</span>&gt;</span><span class="tag">&lt;/<span class="title">app-nav</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">app-view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">app-sidebar</span>&gt;</span><span class="tag">&lt;/<span class="title">app-sidebar</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">app-content</span>&gt;</span><span class="tag">&lt;/<span class="title">app-content</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">app-view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Você deve ter percebido que os componenets do Vue.js são muito parecidos com <strong>Elementos Personalizados</strong>, que são parte da <a href="http://www.w3.org/wiki/WebComponents/" target="_blank" rel="external">Especificação para Componentes Web</a>. Na verdade, a sintaxe de componentes do Vue.js são inspirados em parte na especificação. Por exemplo, os componentes Vue implementam a <a href="https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md" target="_blank" rel="external">Slot API</a> e o atributo especial <code>is</code>. Entretanto, existem algumas diferenças:</p>
+<ol>
+<li><p>A Especificação de Componentes Web ainda está em progresso, e não está implementada nativamente em todos os navegadores. Como comparação, os componentes Vue não precisam de nenhum <i>polyfill</i> e funcionam consistentemente em todos os navegadores suportados (IE 9 e superiores). Quando preciso, os componentes do Vue.js podem ser incluídos dentro de um “elemento personalizado nativo”.</p>
+</li>
+<li><p>Componentes Vue.js fornecem importantes funcionalidades que não estão disponíveis em elementos personalizados simples, mais notado pelo fluxo de dados entre componentes, compartilhamento de informações de eventos e troca de componentes utilizando efeitos de transição.</p>
+</li>
+</ol>
+<p>O sistema de componentes é a base para criar aplicativos complexos com o Vue.js. Em adição à esse sistema, o ecossistema do Vue.js fornece várias ferramentas (simples e avançadas) que podem ser combinados e criar um ambiente mais parecido com o de um framework.</p>
+
+    
+      <div class="guide-links">
+        
+          <span>← <a href="/guide/installation.html">Instalação</a></span>
+        
+        
+          <span style="float:right"><a href="/guide/instance.html">A Instância Vue</a> →</span>
+        
+      </div>
+    
+    <div class="footer">Encontrou algum erro e quer contribuir com a documentação? <a href="https://github.com/vuejs-br/vuejs.org" target="_blank">Faça um Fork desse site no Github</a>!</div>
+</div>
+
+                
+            </div>
+            <script src="/js/smooth-scroll.min.js"></script>
+            <script src="/js/common.js"></script>
+        
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        </script>
+    </body>
+</html>

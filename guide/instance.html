@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>A Instância Vue - vue.js</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Source+Code+Pro|Dosis:300,500' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <script>
+            window.PAGE_TYPE = "guide"
+        </script>
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'vuejs.org');
+  ga('send', 'pageview');
+</script>
+        <script src="/js/vue.js"></script>
+    </head>
+    <body>
+        <div id="mobile-bar">
+            <a class="menu-button"></a>
+            <a class="logo" href="/"></a>
+        </div>
+        
+            <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>Vue.js</span>
+    </a>
+    <ul id="nav">
+        <li>
+  <form id="search-form">
+    <input type="text" id="search-query" class="st-default-search-input">
+  </form>
+</li>
+<li><a href="/guide/" class="nav-link current">Guide</a></li>
+<li><a href="/api/" class="nav-link">API</a></li>
+<li><a href="/examples/" class="nav-link">Examples</a></li>
+<li><a href="https://github.com/yyx990803/vue" class="nav-link" target="_blank">GitHub</a></li>
+<li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">Forum</a></li>
+<li><a href="https://gitter.im/yyx990803/vue" class="nav-link" target="_blank">Chat</a></li>
+
+    </ul>
+</div>
+            <div id="main">
+                
+                    
+    <div class="sidebar">
+    <ul class="main-menu">
+        <li>
+  <form id="search-form">
+    <input type="text" id="search-query" class="st-default-search-input">
+  </form>
+</li>
+<li><a href="/guide/" class="nav-link current">Guide</a></li>
+<li><a href="/api/" class="nav-link">API</a></li>
+<li><a href="/examples/" class="nav-link">Examples</a></li>
+<li><a href="https://github.com/yyx990803/vue" class="nav-link" target="_blank">GitHub</a></li>
+<li><a href="http://forum.vuejs.org" class="nav-link" target="_blank">Forum</a></li>
+<li><a href="https://gitter.im/yyx990803/vue" class="nav-link" target="_blank">Chat</a></li>
+
+    </ul>
+    <div class="list">
+        <h2>Guide</h2>
+        <ul class="menu-root">
+            
+                <li>
+                    <a href="/guide/installation.html" class="sidebar-link">Instalação</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/index.html" class="sidebar-link">Introdução</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/instance.html" class="sidebar-link current">A Instância Vue</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/syntax.html" class="sidebar-link">Data Binding Syntax</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/computed.html" class="sidebar-link">Computed Properties</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/class-and-style.html" class="sidebar-link">Class and Style Bindings</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/conditional.html" class="sidebar-link">Conditional Rendering</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/list.html" class="sidebar-link">List Rendering</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/events.html" class="sidebar-link">Methods and Event Handling</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/forms.html" class="sidebar-link">Form Input Bindings</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/transitions.html" class="sidebar-link">Transitions</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/components.html" class="sidebar-link">Components</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/reactivity.html" class="sidebar-link">Reactivity in Depth</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/custom-directive.html" class="sidebar-link">Custom Directives</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/custom-filter.html" class="sidebar-link">Custom Filters</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/mixins.html" class="sidebar-link">Mixins</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/plugins.html" class="sidebar-link">Plugins</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/application.html" class="sidebar-link">Building Large-Scale Apps</a>
+                </li>
+            
+                <li>
+                    <a href="/guide/comparison.html" class="sidebar-link">Comparison with Other Frameworks</a>
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+<div class="content guide with-sidebar">
+    <h1>A Instância Vue</h1>
+    <div id="ad">
+        <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+    </div>
+    <h2 id="Construtor">Construtor</h2><p>Todos os aplicativos Vue.js são iniciados com a construção de uma <strong>instância Vue principal (raíz)</strong> com a função construtora do <code>Vue</code>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  <span class="comment">// opções</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>Uma instância Vue é essenciamente um <strong>ViewModel</strong> como definido no <a href="https://en.wikipedia.org/wiki/Model_View_ViewModel" target="_blank" rel="external">Padrão MVVM</a>, daí o nome da variável <code>vm</code> que você verá ao longo da documentação.</p>
+<p>Quando você cria uma instância do Vue, você precisa passar um <strong>objeto de opções</strong> que contém suas opções para dados, template html, o elemento ao qual o Vue será vinculado, os métodos, ciclo de vida dos <i>callbacks</i> e mais. A lista completa de opções pode ser encontrada na referência da API.</p>
+<p>O construtor do <code>Vue</code> pode ser extendido para criar <strong>construtores de componentes</strong> com opções pré-definidas:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MyComponent = Vue.extend(&#123;</span><br><span class="line">  <span class="comment">// opções herdadas</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// todas as instâncias do componente `MyComponent` serão criadas com</span></span><br><span class="line"><span class="comment">// as opções pré-definidas.</span></span><br><span class="line"><span class="keyword">var</span> myComponentInstance = <span class="keyword">new</span> MyComponent()</span><br></pre></td></tr></table></figure>
+<p>Apesar da opção de criarmos instâncias extendidas imperativamente, na maioria dos casos nós estaremos registrando o construtor de um componente como um elemento personalizado e compondo ele em seus templates declarativamente. Nós falaremos mais ( e detalhadamente) sobre o sistema de componentes mais à frente. Por enquanto, você só precisa saber que todos os componentes Vue.js são essencialmente instâncias do Vue extendidas.</p>
+<h2 id="Métodos_e_Propriedades">Métodos e Propriedades</h2><p>Cada instância Vue <strong>intercepta</strong> todas as propriedades encontradas no seu objeto <code>data</code>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = &#123; a: <span class="number">1</span> &#125;</span><br><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data: data</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">vm.a === data.a <span class="comment">// -&gt; true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// definindo a propriedade também afeta o seu valor original</span></span><br><span class="line">vm.a = <span class="number">2</span></span><br><span class="line">data.a <span class="comment">// -&gt; 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ... e vice-versa</span></span><br><span class="line">data.a = <span class="number">3</span></span><br><span class="line">vm.a <span class="comment">// -&gt; 3</span></span><br></pre></td></tr></table></figure>
+<p>Deve ser notado que somente essas propriedades interceptadas são <strong>reativas</strong>. Se você adicionar uma nova propriedade para a instância depois dela ter sido criada, ela não emitirá nenhum update para a <i>view</i>. Nós discutiremos o sistema de reatividade com detalhes no futuro.</p>
+<p>Em adição às propriedades de dados, as instãncias do Vue expoem vários métodos e propriedades úteis. Essas propriedades e métodos são prefixados com o símbolo <code>$</code> para diferenciá-las das propriedades de dados que são interceptadas. Por exemplo:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = &#123; a: <span class="number">1</span> &#125;</span><br><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#example'</span>,</span><br><span class="line">  data: data</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">vm.$data === data <span class="comment">// -&gt; true</span></span><br><span class="line">vm.$el === <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>) <span class="comment">// -&gt; true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// $watch é um método da instância</span></span><br><span class="line">vm.$watch(<span class="string">'a'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">newVal, oldVal</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// esse callback será chamado quando o valor da propriedade `vm.a` for modificado</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>Consulte o guia da API para uma lista completa das propriedades e métodos.</p>
+<h2 id="Ciclo_de_Vida_da_Instância">Ciclo de Vida da Instância</h2><p>Cada instância do Vue passa por uma série de passos de inicialização quando é criada - por exemplo, ela precisa inicializar a observação dos dados, compilar o template e criar os vínculos necessários. Durante esse procedimento, ela também invocará alguns <strong>“métodos” do ciclo de vida</strong>, que nos dá a oportunidade de executar uma lógica customizada. Por exemplo, o método <code>created</code> é chamado após a instância ser criada.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    a: <span class="number">1</span></span><br><span class="line">  &#125;,</span><br><span class="line">  created: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// `this` aponta para a instância do Vue</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'a is: '</span> + <span class="keyword">this</span>.a)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// -&gt; "a is: 1"</span></span><br></pre></td></tr></table></figure>
+<p>Também existem métodos que são chamados em diferentes estágios do ciclo de vida da instãncia, como por exemplo os métodos <code>compiled</code>, <code>ready</code>e <code>destroyed</code>. Todos os métodos do ciclo de vida são chamados com sua propriedade <code>this</code> apontando para a instância Vue que o invocou. Alguns usuários podem estar se perguntando onde o conceito de <i>controllers</i> estão no mundo do Vue.js, e a resposta é: não existem <i>controllers</i> no Vue.js. Toda sua lógica customizada para um componente deve ser divididas nesses métodos do ciclo de vida.</p>
+<h2 id="Diagrama_do_Ciclo_de_Vida_de_uma_Instância">Diagrama do Ciclo de Vida de uma Instância</h2><p>Abaixo desse texto temos um diagrama para o ciclo de vida de uma instância Vue. VOcê não precisa entender tudo que está acontecendo nesse momento, mas esse diagrama certamente vai lhe ajudar no futuro.</p>
+<p><img src="/images/lifecycle.png" alt="Lifecycle"></p>
+
+    
+      <div class="guide-links">
+        
+          <span>← <a href="/guide/index.html">Introdução</a></span>
+        
+        
+          <span style="float:right"><a href="/guide/syntax.html">Data Binding Syntax</a> →</span>
+        
+      </div>
+    
+    <div class="footer">Encontrou algum erro e quer contribuir com a documentação? <a href="https://github.com/vuejs-br/vuejs.org" target="_blank">Faça um Fork desse site no Github</a>!</div>
+</div>
+
+                
+            </div>
+            <script src="/js/smooth-scroll.min.js"></script>
+            <script src="/js/common.js"></script>
+        
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        </script>
+    </body>
+</html>
