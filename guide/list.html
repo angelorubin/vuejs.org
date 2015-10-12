@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>List Rendering - vue.js</title>
+        <title>Renderização de Listas - vue.js</title>
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -97,15 +97,15 @@
                 </li>
             
                 <li>
-                    <a href="/vuejs.org/guide/conditional.html" class="sidebar-link">Conditional Rendering</a>
+                    <a href="/vuejs.org/guide/conditional.html" class="sidebar-link">Renderização Condicional</a>
                 </li>
             
                 <li>
-                    <a href="/vuejs.org/guide/list.html" class="sidebar-link current">List Rendering</a>
+                    <a href="/vuejs.org/guide/list.html" class="sidebar-link current">Renderização de Listas</a>
                 </li>
             
                 <li>
-                    <a href="/vuejs.org/guide/events.html" class="sidebar-link">Methods and Event Handling</a>
+                    <a href="/vuejs.org/guide/events.html" class="sidebar-link">Métodos e Manipulação de Eventos</a>
                 </li>
             
                 <li>
@@ -154,15 +154,15 @@
 
 
 <div class="content guide with-sidebar">
-    <h1>List Rendering</h1>
+    <h1>Renderização de Listas</h1>
     <div id="ad">
         <!--<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>-->
     </div>
-    <h2 id="v-for">v-for</h2><p>We can use the <code>v-for</code> directive to render a list of items based on an Array. The <code>v-for</code> directive requires a special syntax in the form of <code>item in items</code>, where <code>items</code> is the source data Array and <code>item</code> is an <strong>alias</strong> for the Array element being iterated on:</p>
+    <h2 id="v-for">v-for</h2><p>Nós podemos utilizar a diretiva <code>v-for</code> para renderizar uma lista de itens baseados em um array. A diretiva <code>v-for</code> precisa de uma sintaxe especial, dessa maneira: <code>item in items</code>, onde <code>items</code> é o array com os dados e <code>item</code> é um <strong>apelido</strong> para o elemento que está sendo percorrido nesse momento:</p>
 <p><strong>Example:</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"example-1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-for</span>=<span class="value">"item in items"</span>&gt;</span></span><br><span class="line">    &#123;&#123; item.message &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> example1 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#example-1'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    items: [</span><br><span class="line">      &#123; message: <span class="string">'Foo'</span> &#125;,</span><br><span class="line">      &#123; message: <span class="string">'Bar'</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><strong>Result:</strong></p>
+<p><strong>Resultado:</strong></p>
 
 <ul id="example-1" class="demo">
   <li v-for="item in items">
@@ -186,10 +186,10 @@ var example1 = new Vue({
 })
 </script>
 
-<p>Inside <code>v-for</code> blocks we have full access to parent scope properties, plus a special variable <code>$index</code> which, as you probably have guessed, is the Array index for the current item:</p>
+<p>Dentro dos blocos de um <code>v-for</code> nós temos acesso total ao escopo “pai” e às suas propriedades, além de uma variável especial chamada <code>$index</code>, que, como você provavelmente já imagina, é o índex do array para o item atual:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"example-2"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-for</span>=<span class="value">"item in items"</span>&gt;</span></span><br><span class="line">    &#123;&#123; parentMessage &#125;&#125; &#123;&#123; $index &#125;&#125; &#123;&#123; item.message &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> example2 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#example-2'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    parentMessage: <span class="string">'Parent'</span>,</span><br><span class="line">    items: [</span><br><span class="line">      &#123; message: <span class="string">'Foo'</span> &#125;,</span><br><span class="line">      &#123; message: <span class="string">'Bar'</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><strong>Result:</strong></p>
+<p><strong>Resultado:</strong></p>
 
 <ul id="example-2" class="demo">
   <li v-for="item in items">
@@ -214,9 +214,9 @@ var example2 = new Vue({
 })
 </script>
 
-<h2 id="Template_v-for">Template v-for</h2><p>Similar to template <code>v-if</code>, you can also use a <code>&lt;template&gt;</code> tag with <code>v-for</code> to render a block of multiple elements. For example:</p>
+<h2 id="Template_e_v-for">Template e v-for</h2><p>Assim como o template do <code>v-if</code>, você pode usar uma tag <code>&lt;template&gt;</code> com um <code>v-for</code> para renderizar um bloco com múltiplos elementos. Por exemplo:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">template</span> <span class="attribute">v-for</span>=<span class="value">"item in items"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span>&#123;&#123; item.msg &#125;&#125;<span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"divider"</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="Array_Change_Detection">Array Change Detection</h2><h3 id="Mutation_Methods">Mutation Methods</h3><p>Vue.js wraps an observed Array’s mutation methods so they will also trigger View updates. The wrapped methods are:</p>
+<h2 id="Detectando_mudanças_no_Array">Detectando mudanças no Array</h2><h3 id="Métodos_Modificadores">Métodos Modificadores</h3><p>O Vue.js encapsula um array que é observado com métodos modificadores, e então eles fazem o trabalho de ativar mudanças na <i>view</i>. Os métodos encapsulados são:</p>
 <ul>
 <li><code>push()</code></li>
 <li><code>pop()</code></li>
@@ -226,34 +226,34 @@ var example2 = new Vue({
 <li><code>sort()</code></li>
 <li><code>reverse()</code></li>
 </ul>
-<p>You can open the console and play with the previous examples’ <code>items</code> array by calling its mutation methods. For example: <code>example1.items.push({ message: &#39;Baz&#39; })</code>.</p>
-<h3 id="Replacing_an_Array">Replacing an Array</h3><p>Mutation methods, as the name suggests, mutate the original Array they are called on. In comparison, there are also non-mutating methods, e.g. <code>filter()</code>, <code>concat()</code> and <code>slice()</code>, which do not mutate the original Array but <strong>always return a new Array</strong>. When working with non-mutating methods, you can just replace the old Array with the new one:</p>
+<p>Você pode abrir o console e brincar com o exemplo anterior. Modifique o array <code>items</code> chamando algum dos métodos modificadores. Por exemplo: <code>example1.items.push({ message: &#39;Baz&#39; })</code>.</p>
+<h3 id="Substituindo_um_Array">Substituindo um Array</h3><p>Os métodos modificadores, como seu nome sugere, modificam o array original em que são chamados. Em comparação, também existem métodos “não-modificadores”, como por exemplo os métodos <code>filter()</code>, <code>concat()</code> e <code>slice()</code>, que não modificam o array original, porém <strong>sempre retornar um novo array</strong>. Quando você estiver trabalhando com métodos “não-modificadores”, você pode simplesmente substituir o array antigo pelo novo:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">example1.items = example1.items.filter(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> item.message.match(<span class="regexp">/Foo/</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>You might think this will cause Vue.js to throw away the existing DOM and re-render the entire list - luckily that is not the case. Vue.js implements some smart heuristics to maximize DOM element reuse, so replacing an array with another array containing overlapping objects is a very efficient operation.</p>
-<h3 id="track-by">track-by</h3><p>In some cases, you might need to replace the Array with completely new objects - e.g. ones created from an API call. Since by default <code>v-for</code> determines the reusability of existing scopes and DOM elements by tracking the identity of its data object, this could cause the entire list to be re-rendered. However, if each of your data objects has a unique id property, then you can use a <code>track-by</code> special attribute to give Vue.js a hint so that it can reuse existing instances as much as possible.</p>
-<p>For example, if your data looks like this:</p>
+<p>Você pode pensar que isso fará com que o Vue.js jogue fora o DOM existente e renderize novamente a lista antiga - felizmente não é esse o caso. O Vue.js implementa algumas técnicas de heurística para maximizar o reuso dos elementos do DOM, então substituir um array com outros que contenham objetos sobrepostos é uma operação muito eficiente.</p>
+<h3 id="track-by">track-by</h3><p>Em alguns casos, você talvez precise substituir um array com objetos totalmente diferentes - um exemplo é um retorno de uma API. Como o <code>v-for</code> determina a reusabilidade de escopos e elementos DOM existentes a partir da identificação deles no objeto de dados, isso pode causar uma nova renderização de todos itens da lista. Entretanto, se cada um dos seus objetos possuir um identificador único entre as propriedades, então você pode utilizar o atributo especial <code>track-by</code> para dar uma dica ao Vue.js de como reutilizar as instâncias existentes na lista.</p>
+<p>Por exemplo, se seus dados se parecerem com esses:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  items: [</span><br><span class="line">    &#123; _uid: <span class="string">'88f869d'</span>, ... &#125;,</span><br><span class="line">    &#123; _uid: <span class="string">'7496c10'</span>, ... &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Then you can give the hint like this:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-for</span>=<span class="value">"item in items"</span> <span class="attribute">track-by</span>=<span class="value">"_uid"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- content --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>Later on, when you replace the <code>items</code> array and Vue.js encounters a new object with <code>_uid: &#39;88f869d&#39;</code>, it knows it can reuse the existing scope and DOM elements associated with the same <code>_uid</code>.</p>
-<h3 id="track-by_$index">track-by $index</h3><p>If you don’t have a unique key to track by, you can also use <code>track-by=&quot;$index&quot;</code>, which will force <code>v-for</code> into in-place update mode: fragments are no longer moved around, they simply get flushed with the new value at the corresponding index. This mode can also handle duplicate values in the source array.</p>
-<p>This can make Array replacement extremely efficient, but it comes at a trade-off. Because DOM nodes are no longer moved to reflect the change in order, temporary state like DOM input values and component private state can become out of sync. So, be careful when using <code>track-by=&quot;$index&quot;</code> if the <code>v-for</code> block contains form input elements or child components.</p>
-<h3 id="Caveats">Caveats</h3><p>Due to limitations of JavaScript, Vue.js <strong>cannot</strong> detect the following changes to an Array:</p>
+<p>Então você pode rastreá-los assim:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-for</span>=<span class="value">"item in items"</span> <span class="attribute">track-by</span>=<span class="value">"_uid"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- conteúdo --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Mais a frente, quando você substituir o array <code>items</code> e o Vue.js encontrar um novo objeto com o <code>_uid: &#39;88f869d&#39;</code>, ele saberá que pode reutilizar o escopo e o elemento DOM associado com o mesmo <code>_uid</code>.</p>
+<h3 id="track-by_$index">track-by $index</h3><p>Se você não possui um identificador único para rastrear o item, você pode utilizar a opção <code>track-by=&quot;$index&quot;</code>, que irá forçar o <code>v-for</code> a realizar uma atualização in-loco: os fragmentos não serão mais reorganizados, eles simplesmete serão atualizados com o novo valor que corresponda ao <code>$index</code> em questão. Desse modo você pode lidar também com valores duplicados no seu array de dados.</p>
+<p>Isso pode fazer com que a substituição de arrays seja extremamente eficiente, mas tem um lado negativo. Como os nós do DOM não são mais movidos para refletir as mudanças, os estados temporários do DOM como os valores de input e o estado privado de um componente podem ser dessincronizados. Então, seja muito cuidadoso ao utilizar o <code>track-by=&quot;$index&quot;</code> se o seu bloco <code>v-for</code>conter inputs ou componentes filhos.</p>
+<h3 id="Ressalvas">Ressalvas</h3><p>Por causa das limitações do JavaScript, o Vue.js <strong>não pode</strong> detectar as seguintes mudanças em um array:</p>
 <ol>
-<li>When you directly set an item with the index, e.g. <code>vm.items[0] = {}</code>;</li>
-<li>When you modify the length of the Array, e.g. <code>vm.items.length = 0</code>.</li>
+<li>Quando você diretamente seta um item à um index, exemplo: <code>vm.items[0] = {}</code>;</li>
+<li>Quando você modifica o tamanho de um array, exemplo: <code>vm.items.length = 0</code>.</li>
 </ol>
-<p>To deal with caveat (1), Vue.js augments observed Arrays with a <code>$set()</code> method:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// same as `example1.items[0] = ...` but triggers view update</span></span><br><span class="line">example1.items.$set(<span class="number">0</span>, &#123; childMsg: <span class="string">'Changed!'</span>&#125;)</span><br></pre></td></tr></table></figure>
-<p>To deal with caveat (2), just replace <code>items</code> with an empty array instead.</p>
-<p>In addition to <code>$set()</code>, Vue.js also augments Arrays with a convenience method <code>$remove()</code>, which searches for and removes an item from target Array by calling <code>splice()</code> internally. So instead of:</p>
+<p>Par alidar com o primeiro item, o Vue.js lhe dá a opção de ampliar um array com o método <code>$set()</code>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// assim como `example1.items[0] = ...` mas faz com que a view seja atualizada</span></span><br><span class="line">example1.items.$set(<span class="number">0</span>, &#123; childMsg: <span class="string">'Changed!'</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p>Para lidar com o segundo item, simplesmente substitua <code>items</code> com um array vazio.</p>
+<p>Além do método <code>$set()</code>, o Vue.js também fornece um método chamado <code>$remove()</code>, que varre o array e remove um item chamando o método <code>splice()</code> internamente. Então, ao invés de:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> index = <span class="keyword">this</span>.items.indexOf(item)</span><br><span class="line"><span class="keyword">if</span> (index !== -<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="keyword">this</span>.items.splice(index, <span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>You can just do:</p>
+<p>Você pode simplesmente fazer isso:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.items.$remove(item)</span><br></pre></td></tr></table></figure>
-<h2 id="Object_v-for">Object v-for</h2><p>You can also use <code>v-for</code> to iterate through the properties of an Object. In addition to <code>$index</code>, each scope will have access to another special property <code>$key</code>.</p>
+<h2 id="Objeto_v-for">Objeto v-for</h2><p>Você também pode utilizar um <code>v-for</code> para iterar as propriedades de um objeto. Assim como o <code>$index</code>, cada escopo terá acesso à uma nova propriedade chamada <code>$key</code>.</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"repeat-object"</span> <span class="attribute">class</span>=<span class="value">"demo"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-for</span>=<span class="value">"value in object"</span>&gt;</span></span><br><span class="line">    &#123;&#123; $key &#125;&#125; : &#123;&#123; value &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#repeat-object'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    object: &#123;</span><br><span class="line">      FirstName: <span class="string">'John'</span>,</span><br><span class="line">      LastName: <span class="string">'Doe'</span>,</span><br><span class="line">      Age: <span class="number">30</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><strong>Result:</strong></p>
+<p><strong>Resultado:</strong></p>
 
 <ul id="repeat-object" class="demo">
   <li v-for="value in object">
@@ -273,11 +273,11 @@ new Vue({
 })
 </script>
 
-<p class="tip">When iterating over an Object, the order is based on the key enumeration order of <code>Object.keys()</code>, which is <strong>not</strong> guaranteed to be consistent in all JavaScript engine implementations.</p>
+<p class="tip">Ao iterar um objeto, a ordem é baseada de acordo com a função <code>Object.keys()</code>, que <strong>não</strong> pode ter sua consistência garantida em todas as implementações da engine JavaScript.</p>
 
-<h2 id="Range_v-for">Range v-for</h2><p><code>v-for</code> can also take an integer Number. In this case it will repeat the template that many times.</p>
+<h2 id="v-for_e_números">v-for e números</h2><p><code>v-for</code> também aceita como parâmetro um valor inteiro. Nesse caso, nós vamos repetir o template X vezes.</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">span</span> <span class="attribute">v-for</span>=<span class="value">"n in 10"</span>&gt;</span>&#123;&#123; n &#125;&#125; <span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>Result:</p>
+<p>Resultado:</p>
 
 <div id="range" class="demo">
   <span v-for="n in 10">{{ n }} </span>
@@ -286,20 +286,20 @@ new Vue({
 new Vue({ el: '#range' })
 </script>
 
-<h2 id="Displaying_Filtered/Sorted_Results">Displaying Filtered/Sorted Results</h2><p>Sometimes we only need to display a filtered or sorted version of the Array without actually mutating or resetting the original data. There are two options to achieve this:</p>
+<h2 id="Exibindo_Resultados_Filtrados/Ordenados">Exibindo Resultados Filtrados/Ordenados</h2><p>Algumas vezes nós queremos exibir apenas uma versão dos dados filtrada ou em uma ordem específica sem ter que modificar ou resetar o array original. Existem duas opções para alcançar esse resultado:</p>
 <ol>
-<li>Create a computed property that returns the filtered or sorted Array;</li>
-<li>Use the built-in <code>filterBy</code> and <code>orderBy</code> filters.</li>
+<li>Criar uma propriedade computada que retorne o valor filtrado ou ordenado do array;</li>
+<li>Utilizar os filtros padrões <code>filterBy</code> e <code>orderBy</code>.</li>
 </ol>
-<p>A computed property would give you finer-grained control and more flexibility since it’s full JavaScript; but the filters can be more convenient for common use cases. For detailed usage of the Array filters, check out their <a href="/api/filters.html#filterBy">documentation</a>.</p>
+<p>Uma propriedade computada lhe daria um controle mais maleável (um ajuste fino) e mais flexibilidade, já que é totalmente JavaScript; mas os filtros podem ser mais convenientes para usos comuns. Para ver o uso detalhados de filtros de Array, verifique sua <a href="/api/filters.html#filterBy">documentação</a>.</p>
 
     
       <div class="guide-links">
         
-          <span>← <a href="/vuejs.org/guide/conditional.html">Conditional Rendering</a></span>
+          <span>← <a href="/vuejs.org/guide/conditional.html">Renderização Condicional</a></span>
         
         
-          <span style="float:right"><a href="/vuejs.org/guide/events.html">Methods and Event Handling</a> →</span>
+          <span style="float:right"><a href="/vuejs.org/guide/events.html">Métodos e Manipulação de Eventos</a> →</span>
         
       </div>
     
