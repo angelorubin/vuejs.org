@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Class and Style Bindings - vue.js</title>
+        <title>Classes e Vinculação de Estilos - vue.js</title>
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -89,11 +89,11 @@
                 </li>
             
                 <li>
-                    <a href="/vuejs.org/guide/computed.html" class="sidebar-link">Computed Properties</a>
+                    <a href="/vuejs.org/guide/computed.html" class="sidebar-link">Propriedades Computadas</a>
                 </li>
             
                 <li>
-                    <a href="/vuejs.org/guide/class-and-style.html" class="sidebar-link current">Class and Style Bindings</a>
+                    <a href="/vuejs.org/guide/class-and-style.html" class="sidebar-link current">Classes e Vinculação de Estilos</a>
                 </li>
             
                 <li>
@@ -154,44 +154,44 @@
 
 
 <div class="content guide with-sidebar">
-    <h1>Class and Style Bindings</h1>
+    <h1>Classes e Vinculação de Estilos</h1>
     <div id="ad">
         <!--<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>-->
     </div>
-    <p>A common need for data binding is manipulating an element’s class list and its inline styles. Since they are both attributes, we can use <code>v-bind</code> to handle them: we just need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue.js provides special enhancements when <code>v-bind</code> is used for <code>class</code> and <code>style</code>. In addition to Strings, the expressions can also evaluate to Objects or Arrays.</p>
-<h2 id="Binding_HTML_Classes">Binding HTML Classes</h2><h3 id="Object_Syntax">Object Syntax</h3><p>We can pass an Object to <code>v-bind:class</code> to dynamically toggle classes:</p>
+    <p>Um requisito comum para vinculação de dados é a manipulação dos estilos que envolvem o elemento. Já que eles são atributos, nós podemos utilizar a diretiva <code>v-bind</code> para lidar com isso: nós somente precisamos calcular o texto final com nossas expressões. Entretanto, lidar com concatenação de textos geralmente é chato e propenso a erros. Por essa razão, o Vue.js fornece melhorias especiais quando o <code>v-bind</code> é utilizado para <code>class</code>e <code>style</code>. Em adição às strings, as expressões podem também ser processadas como objetos e arrays.</p>
+<h2 id="Vinculando_Classes_HTML">Vinculando Classes HTML</h2><h3 id="Sintaxe_de_Objeto">Sintaxe de Objeto</h3><p>Nós podemos passar um objeto para a diretiva <code>v-bind:class</code> para trocar as classes dinamicamente:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-bind:class</span>=<span class="value">"&#123; 'class-a': isA, 'class-b': isB &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  isA: <span class="literal">true</span>,</span><br><span class="line">  isB: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Which will render:</p>
+<p>Que irá renderizar:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"class-a"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>When <code>isA</code> and <code>isB</code> changes, the class list will be updated accordingly. For example, if <code>isB</code> becomes <code>true</code>, the class list will become <code>&quot;class-a class-b&quot;</code>.</p>
-<p>And you can directly bind to an object in data as well:</p>
+<p>Quando <code>isA</code> e <code>isB</code> são modificados, a lista de classes será modificada de acordo. Por exemplo, se <code>isB</code> se tornar <code>true</code>, a lista de classes irá ficar assim: <code>&quot;class-a class-b&quot;</code>.</p>
+<p>Você também pode vincular diretamente à objeto nos dados do Vue:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-bind:class</span>=<span class="value">"classObject"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  classObject: &#123;</span><br><span class="line">    <span class="string">'class-a'</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">'class-b'</span>: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>This will render the same result. As you may have noticed, we can also bind to a <a href="computed.html">computed property</a> that returns an Object. This is a common and powerful pattern.</p>
-<h3 id="Array_Syntax">Array Syntax</h3><p>We can pass an Array to <code>v-bind:class</code> to apply a list of classes:</p>
+<p>Isso vai renderizar o mesmo resultado. Como você deve ter percebido, você também pode vincular a uma <a href="computed.html">propriedade computada</a> que retorna um objeto. Esse é um padrão comum e muito poderoso.</p>
+<h3 id="Sintaxe_de_Array">Sintaxe de Array</h3><p>Nós podemos passar um array para a diretiva <code>v-bind:class</code> para aplicar uma lista de classes:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-bind:class</span>=<span class="value">"[classA, classB]"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  classA: <span class="string">'class-a'</span>,</span><br><span class="line">  classB: <span class="string">'class-b'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Which will render:</p>
+<p>Renderizará:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"class-a class-b"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>If you would like to also toggle a class in the list conditionally, you can do it with a ternary expression:</p>
+<p>Caso você queira adicionar uma classe à lista condicionalmente, você pode utilizar uma expressão ternária:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-bind:class</span>=<span class="value">"[classA, isB ? classB : '']"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>This will always apply <code>classA</code>, but will only apply <code>classB</code> when <code>isB</code> is <code>true</code>.</p>
-<h2 id="Binding_Inline_Styles">Binding Inline Styles</h2><h3 id="Object_Syntax-1">Object Syntax</h3><p>The Object syntax for <code>v-bind:style</code> is pretty straightforward - it looks almost like CSS, except it’s a JavaScript object. You can use either camelCase or kebab-case for the CSS property names:</p>
+<p>Esse código sempre aplicará a classe <code>classA</code>, mas somente aplicará a classe <code>classB</code> quando a propriedade <code>isB</code> for <code>true</code>.</p>
+<h2 id="Encadeando_Estilos">Encadeando Estilos</h2><h3 id="Sintaxe_de_Objeto-1">Sintaxe de Objeto</h3><p>A sintaxe de objeto para <code>v-bind:style</code> é bem simples - quase se parece com CSS, mas na verdade é um objeto JavaScript. Voc~e pode utilizar tanto <i>camelCase</i> ou <i>kebab-case</i> para o nome das propriedades CSS:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-bind:style</span>=<span class="value">"&#123; color: activeColor, fontSize: fontSize + 'px' &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  activeColor: <span class="string">'red'</span>,</span><br><span class="line">  fontSize: <span class="number">30</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>It is often a good idea to bind to a style object directly so that the template is cleaner:</p>
+<p>Geralmente é uma boa ideia estilizar o objeto diretamente, deixando assim o template mais limpo:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-bind:style</span>=<span class="value">"styleObject"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  styleObject: &#123;</span><br><span class="line">    color: <span class="string">'red'</span>,</span><br><span class="line">    fontSize: <span class="string">'13px'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Again, the Object syntax is often used in conjunction with computed properties that return Objects.</p>
-<h3 id="Array_Syntax-1">Array Syntax</h3><p>The Array syntax for <code>v-bind:style</code> allows you to apply multiple style objects to the same element:</p>
+<p>Novamente, a sintaxt de objeto é geralmente utilizada em conjunto com propriedades computadas que retornam objetos.</p>
+<h3 id="Sintaxe_de_Array-1">Sintaxe de Array</h3><p>A sintaxe de array para a diretiva <code>v-bind:style</code> permite que você aplique múltiplos objetos de estilo para o mesmo elemento:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-bind:style</span>=<span class="value">"[styleObjectA, styleObjectB]"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="Auto-prefixing">Auto-prefixing</h3><p>When you use a CSS property that requires vendor prefixes in <code>v-bind:style</code>, for example <code>transform</code>, Vue.js will automatically detect and add appropriate prefixes to the applied styles.</p>
+<h3 id="Utilizando_Auto-prefixing">Utilizando <i>Auto-prefixing</i></h3><p>Quando você usa uma propriedade CSS que requere prefixos de “fornecedores” (<i>vendor</i>) na diretiva <code>v-bind:style</code>, por exemplo, <code>transform</code>, o Vue.js irá detectar automaticamente e adicionar os prefixos necessários para os estilos aplicados.</p>
 
     
       <div class="guide-links">
         
-          <span>← <a href="/vuejs.org/guide/computed.html">Computed Properties</a></span>
+          <span>← <a href="/vuejs.org/guide/computed.html">Propriedades Computadas</a></span>
         
         
           <span style="float:right"><a href="/vuejs.org/guide/conditional.html">Conditional Rendering</a> →</span>
