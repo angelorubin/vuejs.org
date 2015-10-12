@@ -1,13 +1,17 @@
 # vuejs.org
 
-This site is built with [hexo](http://hexo.io/). Site content is written in Markdown format located in `source`. Pull requests welcome!
+Esse site foi construído utilizando [hexo](http://hexo.io/). O conteúdo do site é escrito em formato Markdown localizado na pasta `source`. Pull requests são bem-vindos!
 
-## Developing
+## Desenvolvimento
 
-Start a dev server at `localhost:4000`:
+Inicie um servidor em `localhost:4000`:
 
 ```
 $ npm install -g hexo-cli
 $ npm install
 $ hexo server
 ```
+
+## Contribuidores
+- [@vitorarjol](https://github.com/vitorarjol)
+- [@vedovelli](https://github.com/vedovelli)
