@@ -1,15 +1,15 @@
-title: Class and Style Bindings
+title: Classes e Vinculação de Estilos
 type: guide
 order: 6
 ---
 
-A common need for data binding is manipulating an element's class list and its inline styles. Since they are both attributes, we can use `v-bind` to handle them: we just need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue.js provides special enhancements when `v-bind` is used for `class` and `style`. In addition to Strings, the expressions can also evaluate to Objects or Arrays.
+Um requisito comum para vinculação de dados é a manipulação dos estilos que envolvem o elemento. Já que eles são atributos, nós podemos utilizar a diretiva `v-bind` para lidar com isso: nós somente precisamos calcular o texto final com nossas expressões. Entretanto, lidar com concatenação de textos geralmente é chato e propenso a erros. Por essa razão, o Vue.js fornece melhorias especiais quando o `v-bind` é utilizado para `class`e `style`. Em adição às strings, as expressões podem também ser processadas como objetos e arrays.
 
-## Binding HTML Classes
+## Vinculando Classes HTML
 
-### Object Syntax
+### Sintaxe de Objeto
 
-We can pass an Object to `v-bind:class` to dynamically toggle classes:
+Nós podemos passar um objeto para a diretiva `v-bind:class` para trocar as classes dinamicamente:
 
 ``` html
 <div v-bind:class="{ 'class-a': isA, 'class-b': isB }"></div>
@@ -21,15 +21,15 @@ data: {
 }
 ```
 
-Which will render:
+Que irá renderizar:
 
 ``` html
 <div class="class-a"></div>
 ```
 
-When `isA` and `isB` changes, the class list will be updated accordingly. For example, if `isB` becomes `true`, the class list will become `"class-a class-b"`.
+Quando `isA` e `isB` são modificados, a lista de classes será modificada de acordo. Por exemplo, se `isB` se tornar `true`, a lista de classes irá ficar assim: `"class-a class-b"`.
 
-And you can directly bind to an object in data as well:
+Você também pode vincular diretamente à objeto nos dados do Vue:
 
 ``` html
 <div v-bind:class="classObject"></div>
@@ -43,11 +43,11 @@ data: {
 }
 ```
 
-This will render the same result. As you may have noticed, we can also bind to a [computed property](computed.html) that returns an Object. This is a common and powerful pattern.
+Isso vai renderizar o mesmo resultado. Como você deve ter percebido, você também pode vincular a uma [propriedade computada](computed.html) que retorna um objeto. Esse é um padrão comum e muito poderoso.
 
-### Array Syntax
+### Sintaxe de Array
 
-We can pass an Array to `v-bind:class` to apply a list of classes:
+Nós podemos passar um array para a diretiva `v-bind:class` para aplicar uma lista de classes:
 
 ``` html
 <div v-bind:class="[classA, classB]">
@@ -59,25 +59,25 @@ data: {
 }
 ```
 
-Which will render:
+Renderizará:
 
 ``` html
 <div class="class-a class-b"></div>
 ```
 
-If you would like to also toggle a class in the list conditionally, you can do it with a ternary expression:
+Caso você queira adicionar uma classe à lista condicionalmente, você pode utilizar uma expressão ternária:
 
 ``` html
 <div v-bind:class="[classA, isB ? classB : '']">
 ```
 
-This will always apply `classA`, but will only apply `classB` when `isB` is `true`.
+Esse código sempre aplicará a classe `classA`, mas somente aplicará a classe `classB` quando a propriedade `isB` for `true`.
 
-## Binding Inline Styles
+## Encadeando Estilos
 
-### Object Syntax
+### Sintaxe de Objeto
 
-The Object syntax for `v-bind:style` is pretty straightforward - it looks almost like CSS, except it's a JavaScript object. You can use either camelCase or kebab-case for the CSS property names:
+A sintaxe de objeto para `v-bind:style` é bem simples - quase se parece com CSS, mas na verdade é um objeto JavaScript. Voc~e pode utilizar tanto <i>camelCase</i> ou <i>kebab-case</i> para o nome das propriedades CSS:
 
 ``` html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
@@ -89,7 +89,7 @@ data: {
 }
 ```
 
-It is often a good idea to bind to a style object directly so that the template is cleaner:
+Geralmente é uma boa ideia estilizar o objeto diretamente, deixando assim o template mais limpo:
 
 ``` html
 <div v-bind:style="styleObject"></div>
@@ -103,16 +103,16 @@ data: {
 }
 ```
 
-Again, the Object syntax is often used in conjunction with computed properties that return Objects.
+Novamente, a sintaxt de objeto é geralmente utilizada em conjunto com propriedades computadas que retornam objetos.
 
-### Array Syntax
+### Sintaxe de Array
 
-The Array syntax for `v-bind:style` allows you to apply multiple style objects to the same element:
+A sintaxe de array para a diretiva `v-bind:style` permite que você aplique múltiplos objetos de estilo para o mesmo elemento:
 
 ``` html
 <div v-bind:style="[styleObjectA, styleObjectB]">
 ```
 
-### Auto-prefixing
+### Utilizando <i>Auto-prefixing</i>
 
-When you use a CSS property that requires vendor prefixes in `v-bind:style`, for example `transform`, Vue.js will automatically detect and add appropriate prefixes to the applied styles.
+Quando você usa uma propriedade CSS que requere prefixos de "fornecedores" (<i>vendor</i>) na diretiva `v-bind:style`, por exemplo, `transform`, o Vue.js irá detectar automaticamente e adicionar os prefixos necessários para os estilos aplicados.
