@@ -13,7 +13,7 @@ Se você é um desenvolvedor frontend experiente e deseja saber mais como o Vue.
 
 No núcleo do Vue.js, o que faz com que seja extremamente simples para você manter seus dados sincronizados com o DOM é um sistema de <i>Data Binding</i> reativo. Quando utilizamos jQuery para manualmente manipular o DOM, o código que escrevemos é geralmente imperativo, repetitivo e propenso a erros. O Vue.js incorpora o conceito de **<i>view</i> orientada a dados**. Simplificando, isso significa que nós utilizamos nosso HTML comum para "vincular" o DOM aos dados subjacentes. Uma vez que esse vínculo é criado, o DOM manterá os dados sincronizados. Em qualquer momento que você modifique os dados, o DOM vai atualizar com a informação mais recente. Como resultado disso, a maior parte da lógica de nossa aplicação é agora diretamente ligada à manipulação dos dados, ao invés de possíveis manipulações diretas do DOM. Isso faz com que nosso código seja mais fácil de ser escrito, mais simples de ser entendido e manipulado futuramente.
 
-![MVVM](/images/mvvm.png)
+![MVVM](/vuejs.org/images/mvvm.png)
 
 O exemplo mais simples possível:
 
@@ -97,7 +97,7 @@ Existem algumas outras diretivas, cada uma com sua funcionalidade. Por exemplo, 
 
 O Sistema de Componentes é outro importante conceito no Vue.js, porque é uma abstração que nos permite construir aplicações em larga escala focando em componentes menores, com sua própria lógica, e geralmente reutilizáveis. Quando nós pensamos sobre isso, praticamente qualquer aplicação pode ser abstraída em uma árvore de componentes:
 
-![Component Tree](/images/components.png)
+![Component Tree](/vuejs.org/images/components.png)
 
 Na verdade, uma típica aplicação de grande porte criada com o Vue.js pode ser representada com a figura da direita - uma árvore de componentes. Nós veremos muito mais sobre componentes mais a frente nesse guia, mas aqui está um exemplo (imaginário) do que um template HTML se pareceria utilizando componentes:
 

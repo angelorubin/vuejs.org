@@ -13,7 +13,7 @@ language:
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://vuejs-br.github.io/vuejs.org
-root: /
+root: /vuejs.org/
 permalink: :year/:month/:day/:title/
 tag_dir: tags
 archive_dir: archives
@@ -98,4 +98,3 @@ markdown:
 deploy:
   type: git
   repository: https://github.com/vuejs-br/vuejs.org.git
-  branch: lang-pt

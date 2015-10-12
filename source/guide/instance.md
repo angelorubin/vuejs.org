@@ -97,4 +97,4 @@ Também existem métodos que são chamados em diferentes estágios do ciclo de v
 
 Abaixo desse texto temos um diagrama para o ciclo de vida de uma instância Vue. VOcê não precisa entender tudo que está acontecendo nesse momento, mas esse diagrama certamente vai lhe ajudar no futuro.
 
-![Lifecycle](/images/lifecycle.png)
+![Lifecycle](/vuejs.org/images/lifecycle.png)
