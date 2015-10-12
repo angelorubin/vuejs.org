@@ -1,4 +1,4 @@
-title: Installation
+title: Instalação
 type: guide
 order: 1
 vue_version: 1.0.0-beta.4
@@ -7,43 +7,43 @@ min_size: "71.68"
 gz_size: "23.55"
 ---
 
-> **Compatibility Note:** Vue.js does not support IE8 and below.
+> **Nota de Compatibilidade:** O Vue.js não suporta IE 8 e inferiores.
 
-## Standalone
+## Download Direto
 
-Simply download and include with a script tag. `Vue` will be registered as a global variable.
+Simplesmente efetue o download da biblioteca e a inclua utilizando uma tag script. O `Vue` será registrado como uma variável global.
 
 <div id="downloads">
-<a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.js" download>Development Version</a><span class="light info">{{dev_size}}kb, plenty of comments and debug/warning messages.</span>
+<a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.js" download>Versão de Desenvolvimento</a><span class="light info">{{dev_size}}kb, com vários comentários para debug e mensagens sobre erros.</span>
 
-<a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.min.js" download>Production Version</a><span class="light info">{{min_size}}kb minified / {{gz_size}}kb gzipped</span>
+<a class="button" href="https://raw.github.com/yyx990803/vue/{{vue_version}}/dist/vue.min.js" download>Versão para Produção</a><span class="light info">{{min_size}}kb minificado / {{gz_size}}kb gzipped</span>
 </div>
 
 ### CDN
 
-Available on [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.min.js) or [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) (takes some time to sync so the latest version might not be available yet).
+Disponível em [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.min.js) or [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.min.js) (pode demorar algum tempo para sincronizar com os lançamentos, então a versão mais atual pode não estar disponível ainda).
 
 ### CSP-compliant build
 
-Some environments, such as Google Chrome Apps, enforces Content Security Policy (CSP) and does not allow the use of `new Function()` for evaluating expressions. In these cases you can use the [CSP-compliant build](https://github.com/yyx990803/vue/tree/csp/dist) instead.
+Alguns ambientes, como os Aplicativos do Google Chrome, obrigam o uso de Políticas de Segurança de Conteúdo (CSP) e não permitem o uso do `new Function()` ao criar expressões. Nesses casos você deve utilizar a build [CSP-compliant build](https://github.com/yyx990803/vue/tree/csp/dist).
 
 ## NPM
 
 ``` bash
 $ npm install vue
-# for csp-compliant version:
+# para a versão csp-compliant:
 $ npm install vue@csp
-# for dev build (from GitHub):
+# para a build de desenvolvimento (direto do GitHub):
 $ npm install yyx990803/vue#dev
 ```
 
 ## Bower
 
 ``` bash
-# only stable version is available through Bower
+# somente a versão estável está disponível no Bower
 $ bower install vue
 ```
 
-## AMD Module Loaders
+## Módulos AMD (AMD Module Loader)
 
-The standalone downloads or versions installed via Bower are wrapped with UMD so they can be used directly as an AMD module.
+As versões offline (standalone) ou instaladas via Bower são carregadas via UMD, tornando possível utilizá-las diretamente como um módulo AMD

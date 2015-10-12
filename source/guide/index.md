@@ -1,44 +1,44 @@
-title: Introduction
+title: Introdução
 type: guide
 order: 2
 ---
 
-Vue.js (pronounced /vjuː/, like **view**) is a library for building interactive web interfaces. The goal of Vue.js is to provide the benefits of **reactive data binding** and **composable view components** with an API that is as simple as possible.
+Vue.js (pronúncia: /vjuː/, assim como a palavra **view**) é uma biblioteca para criar interfaces web interativas. O objetivo do Vue.js é disponibilizar os benefícios do **<i>data binding</i> reativo** e a permitir a **composição de <i>views</i> utilizando compoenentes**, mantendo a API o mais simples possível.
 
-Vue.js itself is not a full-blown framework - it is focused on the view layer only. It is therefore very easy to pick up and to integrate with other libraries or existing projects. On the other hand, when used in combination with proper tooling and supporting libraries, Vue.js is also perfectly capable of powering sophisticated Single-Page Applications.
+O Vue.js por si mesmo não é um "framework completo" - é focado para ser exclusivamente a camada de <i>view</i>. Por isso que é muito simples de integrá-lo com outras bibliotecas ou projetos existentes. Por outro lado, quando utilizado com as ferramentas corretas, o Vue.js é perfeitamente capaz de criar <i>Single-Page Applications (SPA's)</i> sofisticadas.
 
-If you are an experienced frontend developer and want to know how Vue.js compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html); if you are more interested about how Vue.js approaches larger-scale applications, check out the section on [Building Larger-Scale Applications](application.html).
+Se você é um desenvolvedor frontend experiente e deseja saber mais como o Vue.js se compara a outras bibliotecas e frameworks, confira o guia de [Comparação com outros Frameworks](comparison.html); se você está mais interessado em saber como trabalhar com o Vue.js em aplicações de larga escala, confira a seção [Construindo aplicações de larga escala](application.html).
 
-## Reactive Data Binding
+## <i>Data Binding</i> Reativo
 
-At the core of Vue.js is a reactive data-binding system that makes it extremely simple to keep your data and the DOM in sync. When using jQuery to manually manipulate the DOM, the code we write is often imperative, repetitive and error-prone. Vue.js embraces the concept of **data-driven view**. In plain words, it means we use special syntax in our normal HTML templates to "bind" the DOM to the underlying data. Once the bindings are created, the DOM will then be kept in sync with the data. Whenever you modify the data, the DOM updates accordingly. As a result, most of our application logic is now directly manipulating data, rather than messing around with DOM updates. This makes our code easier to write, easier to reason about and easier to maintain.
+No núcleo do Vue.js, o que faz com que seja extremamente simples para você manter seus dados sincronizados com o DOM é um sistema de <i>Data Binding</i> reativo. Quando utilizamos jQuery para manualmente manipular o DOM, o código que escrevemos é geralmente imperativo, repetitivo e propenso a erros. O Vue.js incorpora o conceito de **<i>view</i> orientada a dados**. Simplificando, isso significa que nós utilizamos nosso HTML comum para "vincular" o DOM aos dados subjacentes. Uma vez que esse vínculo é criado, o DOM manterá os dados sincronizados. Em qualquer momento que você modifique os dados, o DOM vai atualizar com a informação mais recente. Como resultado disso, a maior parte da lógica de nossa aplicação é agora diretamente ligada à manipulação dos dados, ao invés de possíveis manipulações diretas do DOM. Isso faz com que nosso código seja mais fácil de ser escrito, mais simples de ser entendido e manipulado futuramente.
 
 ![MVVM](/images/mvvm.png)
 
-For the simplest possible example:
+O exemplo mais simples possível:
 
 ``` html
-<!-- this is our View -->
+<!-- essa é nossa View -->
 <div id="example-1">
   Hello {{ name }}!
 </div>
 ```
 
 ``` js
-// this is our Model
+// esse é nosso Model
 var exampleData = {
   name: 'Vue.js'
 }
 
-// create a Vue instance, or, a "ViewModel"
-// which links the View and the Model
+// cria uma instância do Vue, ou um "ViewModel"
+// que vincula a View com o Model
 var exampleVM = new Vue({
   el: '#example-1',
   data: exampleData
 })
 ```
 
-Result:
+Resultado:
 {% raw %}
 <div id="example-1" class="demo">Hello {{ name }}!</div>
 <script>
@@ -52,11 +52,11 @@ var exampleVM = new Vue({
 </script>
 {% endraw %}
 
-This looks pretty similar to just rendering a template, but Vue.js has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Just open up your browser developer console and modify `exampleData.name`. You should see the rendered example above update accordingly.
+Isso é muito similar a somente renderizar um html, mas o Vue.js fez várias coisas por trás das cortinas. Os dados e o DOM estão agora vinculados e tudo agora é **reativo**. Como nós sabemos? Simplesmente abra as ferramentas de desenvolvedor do seu navegador e modifique o valor da propriedade `exampleData.name`.Você deverá ser o exemplo acima ser atualizado conforme no valor que você digitar.
 
-Note that we didn't have to write any DOM-manipulating code: the HTML template, enhanced with the bindings, is a declarative mapping of the underlying data state, which is in turn just plain JavaScript objects. Our view is entirely data-driven.
+Note que nós não precisamos reescrever nenhum código de manipulação do DOM: o template HTML, melhorado com os vínculos, agora é um mapeamento declarativo dos dados, que são transformados em simples objetos Javascript. Nossa <i>view</i> está completamente orientada a dados.
 
-Let's look at a second example:
+Vamos olhar um segundo exemplo:
 
 ``` html
 <div id="example-2">
@@ -87,19 +87,19 @@ var exampleVM2 = new Vue({
 </script>
 {% endraw %}
 
-Here we are encountering something new. The `v-if` attribute you are seeing are called **Directives**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue.js, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Go ahead and set `exampleVM2.greeting` to `false` in the console. You should see the "Hello!" message disappear.
+Aqui nós estamos visualizando algo novo. O atributo `v-if` que você está vendo é chamado de **Diretiva**. Diretivas contém o prefixo `v-` para indicar que eles são atributos especiais fornecidos pelo Vue.js, e como você deve ter advinhado, elas aplicam um comportamento reativo especial para o DOM renderizado. Teste você mesmo e atribua o valor `false` para a propriedade `exampleVM2.greeting` no seu console. VOcê deverá ver a mensagem "Hello!" desaparecer.
 
-This second example demonstrates that not only can we bind DOM text to the data, we can also bind the **structure** of the DOM to the data. Moreover, Vue.js also provides a powerful transition effect system that can automatically apply transition effects when elements are inserted/removed by Vue.
+Esse segundo exemplo demonstra que não somente podemos vincular o DOM com os dados, mas nós também podemos vincular a **estrutura** do DOM aos dados. Mais que isso, o Vue.js também disponibiliza um poderoso sistema de efeitos de transição que podem aplicar efeitos efeitos automáticos ao remover ou inserir elementos com o Vue.
 
-There are quite a few other directives, each with its own special functionality. For example the `v-for` directive for displaying items in an Array, or the `v-bind` directive for binding HTML attributes. We will discuss the full data-binding syntax with more details later.
+Existem algumas outras diretivas, cada uma com sua funcionalidade. Por exemplo, a diretiva `v-for` é utilizada para exibir itens em um Array, ou a diretiva `v-bind` é utilizada para vincular dados à atributos HTML. Nós discutiremos a sintaxe completa de <i>data binding</i> com mais detalhes futuramente.
 
-## Component System
+## Sistema de Componentes
 
-The Component System is another important concept in Vue.js, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
+O Sistema de Componentes é outro importante conceito no Vue.js, porque é uma abstração que nos permite construir aplicações em larga escala focando em componentes menores, com sua própria lógica, e geralmente reutilizáveis. Quando nós pensamos sobre isso, praticamente qualquer aplicação pode ser abstraída em uma árvore de componentes:
 
 ![Component Tree](/images/components.png)
 
-In fact, a typical large application built with Vue.js would form exactly what is on the right - a tree of components. We will talk a lot more about components later in the guide, but here's an (imaginary) example of what an app's template would look like with components:
+Na verdade, uma típica aplicação de grande porte criada com o Vue.js pode ser representada com a figura da direita - uma árvore de componentes. Nós veremos muito mais sobre componentes mais a frente nesse guia, mas aqui está um exemplo (imaginário) do que um template HTML se pareceria utilizando componentes:
 
 ``` html
 <div id="app">
@@ -111,10 +111,10 @@ In fact, a typical large application built with Vue.js would form exactly what i
 </div>
 ```
 
-You may have noticed that Vue.js components are very similar to **Custom Elements**, which is part of the [Web Components Spec](http://www.w3.org/wiki/WebComponents/). In fact, Vue.js' component syntax is loosely modeled after the spec. For example, Vue components implement the [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) and the `is` special attribute. However, there are a few key differences:
+Você deve ter percebido que os componenets do Vue.js são muito parecidos com **Elementos Personalizados**, que são parte da [Especificação para Componentes Web](http://www.w3.org/wiki/WebComponents/). Na verdade, a sintaxe de componentes do Vue.js são inspirados em parte na especificação. Por exemplo, os componentes Vue implementam a [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) e o atributo especial `is`. Entretanto, existem algumas diferenças:
 
-1. The Web Components Spec is still very much a work in progress, and is not natively implemented in every browser. In comparison, Vue.js components don't require any polyfills and works consistently in all supported browsers (IE9 and above). When needed, Vue.js components can also be wrapped inside a native custom element.
+1. A Especificação de Componentes Web ainda está em progresso, e não está implementada nativamente em todos os navegadores. Como comparação, os componentes Vue não precisam de nenhum <i>polyfill</i> e funcionam consistentemente em todos os navegadores suportados (IE 9 e superiores). Quando preciso, os componentes do Vue.js podem ser incluídos dentro de um "elemento personalizado nativo".
 
-2. Vue.js components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and dynamic component switching with transition effects.
+2. Componentes Vue.js fornecem importantes funcionalidades que não estão disponíveis em elementos personalizados simples, mais notado pelo fluxo de dados entre componentes, compartilhamento de informações de eventos e troca de componentes utilizando efeitos de transição.
 
-The component system is the foundation for building large apps with Vue.js. In addition, the Vue.js ecosystem also provides advanced tooling and various supporting libraries that can be put together to create a more "framework" like system.
+O sistema de componentes é a base para criar aplicativos complexos com o Vue.js. Em adição à esse sistema, o ecossistema do Vue.js fornece várias ferramentas (simples e avançadas) que podem ser combinados e criar um ambiente mais parecido com o de um framework.

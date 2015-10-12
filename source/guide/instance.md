@@ -1,39 +1,39 @@
-title: The Vue Instance
+title: A Instância Vue
 type: guide
 order: 3
 ---
 
-## Constructor
+## Construtor
 
-Every Vue.js app is bootstrapped by creating a **root Vue instance** with the `Vue` constructor function:
+Todos os aplicativos Vue.js são iniciados com a construção de uma **instância Vue principal (raíz)** com a função construtora do `Vue`:
 
 ``` js
 var vm = new Vue({
-  // options
+  // opções
 })
 ```
 
-A Vue instance is essentially a **ViewModel** as defined in the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), hence the variable name `vm` you will see throughout the docs.
+Uma instância Vue é essenciamente um **ViewModel** como definido no [Padrão MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel), daí o nome da variável `vm` que você verá ao longo da documentação.
 
-When you instantiate a Vue instance, you need to pass in an **options object** which can contain options for data, template, element to mount on, methods, lifecycle callbacks and more. The full list of options can be found in the API reference.
+Quando você cria uma instância do Vue, você precisa passar um **objeto de opções** que contém suas opções para dados, template html, o elemento ao qual o Vue será vinculado, os métodos, ciclo de vida dos <i>callbacks</i> e mais. A lista completa de opções pode ser encontrada na referência da API.
 
-The `Vue` constructor can be extended to create reusable **component constructors** with pre-defined options:
+O construtor do `Vue` pode ser extendido para criar **construtores de componentes** com opções pré-definidas:
 
 ``` js
 var MyComponent = Vue.extend({
-  // extension options
+  // opções herdadas
 })
 
-// all instances of `MyComponent` are created with
-// the pre-defined extension options
+// todas as instâncias do componente `MyComponent` serão criadas com
+// as opções pré-definidas.
 var myComponentInstance = new MyComponent()
 ```
 
-Although you can create extended instances imperatively, in most cases you will be registering a component constructor as a custom element and composing them in templates declaratively. We will talk about the component system in details later. For now, you just need to know that all Vue.js components are essentially extended Vue instances.
+Apesar da opção de criarmos instâncias extendidas imperativamente, na maioria dos casos nós estaremos registrando o construtor de um componente como um elemento personalizado e compondo ele em seus templates declarativamente. Nós falaremos mais ( e detalhadamente) sobre o sistema de componentes mais à frente. Por enquanto, você só precisa saber que todos os componentes Vue.js são essencialmente instâncias do Vue extendidas.
 
-## Properties and Methods
+## Métodos e Propriedades
 
-Each Vue instance **proxies** all the properties found in its `data` object:
+Cada instância Vue **intercepta** todas as propriedades encontradas no seu objeto `data`:
 
 ``` js
 var data = { a: 1 }
@@ -43,18 +43,18 @@ var vm = new Vue({
 
 vm.a === data.a // -> true
 
-// setting the property also affects original data
+// definindo a propriedade também afeta o seu valor original
 vm.a = 2
 data.a // -> 2
 
-// ... and vice-versa
+// ... e vice-versa
 data.a = 3
 vm.a // -> 3
 ```
 
-It should be noted that only these proxied properties are **reactive**. If you attach a new property to the instance after it has been created, it will not trigger any view updates. We will discuss the reactivity system in details later.
+Deve ser notado que somente essas propriedades interceptadas são **reativas**. Se você adicionar uma nova propriedade para a instância depois dela ter sido criada, ela não emitirá nenhum update para a <i>view</i>. Nós discutiremos o sistema de reatividade com detalhes no futuro.
 
-In addition to data properties, Vue instances expose a number of useful instance properties and methods. These properties and methods are prefixed with `$` to differentiate from proxied data properties. For example:
+Em adição às propriedades de dados, as instãncias do Vue expoem vários métodos e propriedades úteis. Essas propriedades e métodos são prefixados com o símbolo `$` para diferenciá-las das propriedades de dados que são interceptadas. Por exemplo:
 
 ``` js
 var data = { a: 1 }
@@ -66,17 +66,17 @@ var vm = new Vue({
 vm.$data === data // -> true
 vm.$el === document.getElementById('example') // -> true
 
-// $watch is an instance method
+// $watch é um método da instância
 vm.$watch('a', function (newVal, oldVal) {
-  // this callback will be called when `vm.a` changes
+  // esse callback será chamado quando o valor da propriedade `vm.a` for modificado
 })
 ```
 
-Consult the API reference for the full list of instance properties and methods.
+Consulte o guia da API para uma lista completa das propriedades e métodos.
 
-## Instance Lifecycle
+## Ciclo de Vida da Instância
 
-Each Vue instance goes through a series of initialization steps when it is created - for example, it needs to setup data observation, compile the template, and create the necessary data bindings. Along the way, it will also invoke some **lifecycle hooks**, which give us the opportunity to execute custom logic. For example, the `created` hook is called after the instance created:
+Cada instância do Vue passa por uma série de passos de inicialização quando é criada - por exemplo, ela precisa inicializar a observação dos dados, compilar o template e criar os vínculos necessários. Durante esse procedimento, ela também invocará alguns **"métodos" do ciclo de vida**, que nos dá a oportunidade de executar uma lógica customizada. Por exemplo, o método `created` é chamado após a instância ser criada.
 
 ``` js
 var vm = new Vue({
@@ -84,17 +84,17 @@ var vm = new Vue({
     a: 1
   },
   created: function () {
-    // `this` points to the vm instance
+    // `this` aponta para a instância do Vue
     console.log('a is: ' + this.a)
   }
 })
 // -> "a is: 1"
 ```
 
-There are also other hooks which will be called at different stages of the instance's lifecycle, for example `compiled`, `ready` and `destroyed`. All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it. Some users may have been wondering where does the concept of "controllers" live in the Vue.js world, and the answer is: there are no controllers in Vue.js. Your custom logic for a component would be split among these lifecycle hooks.
+Também existem métodos que são chamados em diferentes estágios do ciclo de vida da instãncia, como por exemplo os métodos `compiled`, `ready`e `destroyed`. Todos os métodos do ciclo de vida são chamados com sua propriedade `this` apontando para a instância Vue que o invocou. Alguns usuários podem estar se perguntando onde o conceito de <i>controllers</i> estão no mundo do Vue.js, e a resposta é: não existem <i>controllers</i> no Vue.js. Toda sua lógica customizada para um componente deve ser divididas nesses métodos do ciclo de vida.
 
-## Lifecycle Diagram
+## Diagrama do Ciclo de Vida de uma Instância
 
-Below is a diagram for the instance lifecycle. You don't need to fully understand everything going on right now, but this diagram will be helpful in the future.
+Abaixo desse texto temos um diagrama para o ciclo de vida de uma instância Vue. VOcê não precisa entender tudo que está acontecendo nesse momento, mas esse diagrama certamente vai lhe ajudar no futuro.
 
 ![Lifecycle](/images/lifecycle.png)
