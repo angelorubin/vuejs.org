@@ -156,7 +156,7 @@
 <div class="content guide with-sidebar">
     <h1>A Instância Vue</h1>
     <div id="ad">
-        <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+        <!--<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>-->
     </div>
     <h2 id="Construtor">Construtor</h2><p>Todos os aplicativos Vue.js são iniciados com a construção de uma <strong>instância Vue principal (raíz)</strong> com a função construtora do <code>Vue</code>:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  <span class="comment">// opções</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
@@ -175,7 +175,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    a: <span class="number">1</span></span><br><span class="line">  &#125;,</span><br><span class="line">  created: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// `this` aponta para a instância do Vue</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'a is: '</span> + <span class="keyword">this</span>.a)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// -&gt; "a is: 1"</span></span><br></pre></td></tr></table></figure>
 <p>Também existem métodos que são chamados em diferentes estágios do ciclo de vida da instãncia, como por exemplo os métodos <code>compiled</code>, <code>ready</code>e <code>destroyed</code>. Todos os métodos do ciclo de vida são chamados com sua propriedade <code>this</code> apontando para a instância Vue que o invocou. Alguns usuários podem estar se perguntando onde o conceito de <i>controllers</i> estão no mundo do Vue.js, e a resposta é: não existem <i>controllers</i> no Vue.js. Toda sua lógica customizada para um componente deve ser divididas nesses métodos do ciclo de vida.</p>
 <h2 id="Diagrama_do_Ciclo_de_Vida_de_uma_Instância">Diagrama do Ciclo de Vida de uma Instância</h2><p>Abaixo desse texto temos um diagrama para o ciclo de vida de uma instância Vue. VOcê não precisa entender tudo que está acontecendo nesse momento, mas esse diagrama certamente vai lhe ajudar no futuro.</p>
-<p><img src="images/lifecycle.png" alt="Lifecycle"></p>
+<p><img src="/vuejs.org/images/lifecycle.png" alt="Lifecycle"></p>
 
     
       <div class="guide-links">

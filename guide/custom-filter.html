@@ -156,7 +156,7 @@
 <div class="content guide with-sidebar">
     <h1>Custom Filters</h1>
     <div id="ad">
-        <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>
+        <!--<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>-->
     </div>
     <h2 id="Basics">Basics</h2><p>Similar to custom directives, you can register a custom filter with the global <code>Vue.filter()</code> method, passing in a <strong>filterID</strong> and a <strong>filter function</strong>. The filter function takes a value as the argument and returns the transformed value:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.filter(<span class="string">'reverse'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
