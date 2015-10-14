@@ -48,12 +48,12 @@ var vm = new Vue({
   data: {
     name: 'Vue.js'
   },
-  // define methods under the `methods` object
+  // definindo um método dentro do objeto `methods`
   methods: {
     greet: function (event) {
-      // `this` inside methods point to the vm
+      // `this` dentro de métodos aponta para a vm.
       alert('Hello ' + this.name + '!')
-      // `event` is the native DOM event
+      // `event` é o evento nativo do DOM
       alert(event.target.tagName)
     }
   }
@@ -61,9 +61,9 @@ var vm = new Vue({
 </script>
 {% endraw %}
 
-## Inline Statement Handler
+## Manipulando Declarações Encadeadas
 
-Instead of binding directly to a method name, we can also use an inline JavaScript statement:
+Ao invés de vincular diretamente ao nome de um método, nós também podemos utilizar declarações JavaScript encadeadas:
 
 ``` html
 <div id="example-2">
@@ -82,7 +82,7 @@ new Vue({
 })
 ```
 
-Result:
+Resultado:
 {% raw %}
 <div id="example-2" class="demo">
   <button v-on:click="say('hi')">Say Hi</button>
@@ -100,9 +100,9 @@ new Vue({
 </script>
 {% endraw %}
 
-Similar to the restrictions on inline expressions, event handlers are restricted to **one statement only**.
+Assim como as limitações das expressões, os manipuladores de eventos estão restritos à **somente uma declaração**.
 
-Sometimes we also need to access the original DOM event in an inline statement handler. You can pass it into a method using the special `$event` variable:
+Algumas vezes nós também precisamos acessar o evento DOM original durante a manipulação do evento. Você pode passá-lo para o método utilizando a variável especial `$event`:
 
 ``` html
 <button v-on:click="say('hello!', $event)">Submit</button>
@@ -112,49 +112,49 @@ Sometimes we also need to access the original DOM event in an inline statement h
 // ...
 methods: {
   say: function (msg, event) {
-    // now we have access to the native event
+    // agora nós temos acesso ao evento nativo
     event.preventDefault()
   }
 }
 ```
 
-## Event Modifiers
+## Modificadores de Eventos
 
-It is a very common need to call `event.preventDefault()` or `event.stopPropagation()` inside event handlers. Although we can do this easily inside methods, it would be better if the methods can be purely about data logic rather than having to deal with DOM event details.
+Ao lidar com eventos, é muito comum você utilizar métodos como o `event.preventDefault()` ou `event.stopPropagation()` para modificar o comportamento do evento. Apesar de poder fazer isso facilmente dentro do método, seria ainda melhor pudéssemos lidar somente com a lógica que estamos desenvolvendo, ao invés de lidar com detalhes dos eventos do DOM.
 
-To address this problem, Vue.js provides two **event modifiers** for `v-on`: `.prevent` and `.stop`. Recall that modifiers are directive postfixes denoted by a dot:
+Para lidar com esse problema, o Vue.js fornece dois **modificadores de evento** para a diretiva `v-on`: `.prevent` e `.stop`. Lembre-se que modificadores são sufixos de diretivas, e representados com um ponto:
 
 ``` html
-<!-- the click event's propagation will be stopped -->
+<!-- a propagação do evento Click será parada -->
 <a v-on:click.stop="doThis"></a>
 
-<!-- the submit event will no longer reload the page -->
+<!-- o evento de submit não irá mais recarregar a página -->
 <form v-on:submit.prevent="onSubmit"></form>
 
-<!-- modifiers can be chained -->
+<!-- os modificadores podem ser encadeados -->
 <a v-on:click.stop.prevent="doThat">
 ```
 
-## Key Modifiers
+## Modificadores de Teclas
 
-When listening for keyboard events, we often need to check for common key codes. Vue.js also allows adding key modifiers for `v-on` when listening for key events:
+Ao lidar com eventos do teclado, geralmente precisamos verficar o código da tecla digitada. O Vue.js também permite que você adicione o um modificador para essa situação na diretiva `v-on`:
 
 ``` html
-<!-- only call vm.submit() when the keyCode is 13 -->
+<!-- somente chame o método vm.submit() quando o código da tecla for igual a 13 -->
 <input v-on:keyup.13="submit">
 ```
 
-Remembering all the keyCodes is a hassle, so Vue.js provides aliases for most commonly used keys:
+Lembrar o código das teclas é algo trabalhoso, então o Vue.js fornece alguns pseudônimos para as teclas mais utilizadas:
 
 ``` html
-<!-- same as above -->
+<!-- idem ao exemplo anterior -->
 <input v-on:keyup.enter="submit">
 
-<!-- also works for shorthand -->
+<!-- também funciona para abreviações -->
 <input @keyup.enter="submit">
 ```
 
-Here's the full list of key modifier aliases:
+Aqui temos a lista completa com os pseudõnimos para as teclas:
 
 - enter
 - tab
@@ -166,12 +166,12 @@ Here's the full list of key modifier aliases:
 - left
 - right
 
-## Why Listeners in HTML?
+## Por que manipular eventos no HTML?
 
-You might be concerned that this whole event listening approach violates the good old rules about "separation of concern". Rest assured - since all Vue.js handler functions and expressions are strictly bound to the ViewModel that's handling the current View, it won't cause any maintenance difficulty. In fact, there are several benefits in using `v-on`:
+Você deve estar se perguntando se toda essa coisa de manipular os eventos não violam as regras de ouro sobre "Separação de conceitos". Fique tranquilo - todas as funções de manipulações e expressões do Vue.js estão estritamente ligadas ao <i>ViewModel</i> que está vinculado a sua <i>View</i>, isso não acarretará dificuldade na manutenção. Na verdade, existem vários benefícios ao utilizar o `v-on`:
 
-1. It makes it easier to locate the handler function implementations within your JS code by simply skimming the HTML template.
+1. Facilita a identificação das funções que lidam com os eventos no seu código JS só de olhar no código HTML.
 
-2. Since you don't have to manually attach event listeners in JS, your ViewModel code can be pure logic and DOM-free. This makes it easier to test.
+2. Como você não tem que manualmente anexar os manipuladores de evento no seu JS, seu <i>ViewModel</i> pode ser composto apenas por lógica e sem manipulações do DOM. Isso faz com que ele seja mais fácil de ser testado.
 
-3. When a ViewModel is destroyed, all event listeners are automatically removed. You don't need to worry about cleaning it up yourself.
+3. Quando um <i>ViewModel</i> é destruído, todo código responsável por lidar com a manipulação do evento é destruído automaticamente. Você não precisa se preocupar em realizar essa limpeza.
