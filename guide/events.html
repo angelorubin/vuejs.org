@@ -89,7 +89,7 @@
                 </li>
             
                 <li>
-                    <a href="/vuejs.org/guide/computed.html" class="sidebar-link">Propriedades Computadas</a>
+                    <a href="/vuejs.org/guide/computed.html" class="sidebar-link">Computed Properties</a>
                 </li>
             
                 <li>
@@ -173,22 +173,22 @@ var vm = new Vue({
   data: {
     name: 'Vue.js'
   },
-  // define methods under the `methods` object
+  // definindo um método dentro do objeto `methods`
   methods: {
     greet: function (event) {
-      // `this` inside methods point to the vm
+      // `this` dentro de métodos aponta para a vm.
       alert('Hello ' + this.name + '!')
-      // `event` is the native DOM event
+      // `event` é o evento nativo do DOM
       alert(event.target.tagName)
     }
   }
 })
 </script>
 
-<h2 id="Inline_Statement_Handler">Inline Statement Handler</h2><p>Instead of binding directly to a method name, we can also use an inline JavaScript statement:</p>
+<h2 id="Manipulando_Declarações_Encadeadas">Manipulando Declarações Encadeadas</h2><p>Ao invés de vincular diretamente ao nome de um método, nós também podemos utilizar declarações JavaScript encadeadas:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"example-2"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">button</span> <span class="attribute">v-on:click</span>=<span class="value">"say('hi')"</span>&gt;</span>Say Hi<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">button</span> <span class="attribute">v-on:click</span>=<span class="value">"say('what')"</span>&gt;</span>Say What<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#example-2'</span>,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    say: <span class="function"><span class="keyword">function</span> (<span class="params">msg</span>) </span>&#123;</span><br><span class="line">      alert(msg)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>Result:<br>
+<p>Resultado:<br>
 <div id="example-2" class="demo">
   <button v-on:click="say('hi')">Say Hi</button>
   <button v-on:click="say('what')">Say What</button>
@@ -204,18 +204,18 @@ new Vue({
 })
 </script>
 </p>
-<p>Similar to the restrictions on inline expressions, event handlers are restricted to <strong>one statement only</strong>.</p>
-<p>Sometimes we also need to access the original DOM event in an inline statement handler. You can pass it into a method using the special <code>$event</code> variable:</p>
+<p>Assim como as limitações das expressões, os manipuladores de eventos estão restritos à <strong>somente uma declaração</strong>.</p>
+<p>Algumas vezes nós também precisamos acessar o evento DOM original durante a manipulação do evento. Você pode passá-lo para o método utilizando a variável especial <code>$event</code>:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">v-on:click</span>=<span class="value">"say('hello!', $event)"</span>&gt;</span>Submit<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line">methods: &#123;</span><br><span class="line">  say: <span class="function"><span class="keyword">function</span> (<span class="params">msg, event</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// now we have access to the native event</span></span><br><span class="line">    event.preventDefault()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Event_Modifiers">Event Modifiers</h2><p>It is a very common need to call <code>event.preventDefault()</code> or <code>event.stopPropagation()</code> inside event handlers. Although we can do this easily inside methods, it would be better if the methods can be purely about data logic rather than having to deal with DOM event details.</p>
-<p>To address this problem, Vue.js provides two <strong>event modifiers</strong> for <code>v-on</code>: <code>.prevent</code> and <code>.stop</code>. Recall that modifiers are directive postfixes denoted by a dot:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- the click event's propagation will be stopped --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">v-on:click.stop</span>=<span class="value">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- the submit event will no longer reload the page --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">form</span> <span class="attribute">v-on:submit.prevent</span>=<span class="value">"onSubmit"</span>&gt;</span><span class="tag">&lt;/<span class="title">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- modifiers can be chained --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">v-on:click.stop.prevent</span>=<span class="value">"doThat"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="Key_Modifiers">Key Modifiers</h2><p>When listening for keyboard events, we often need to check for common key codes. Vue.js also allows adding key modifiers for <code>v-on</code> when listening for key events:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- only call vm.submit() when the keyCode is 13 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">v-on:keyup.13</span>=<span class="value">"submit"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>Remembering all the keyCodes is a hassle, so Vue.js provides aliases for most commonly used keys:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- same as above --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">v-on:keyup.enter</span>=<span class="value">"submit"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- also works for shorthand --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> @<span class="attribute">keyup.enter</span>=<span class="value">"submit"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>Here’s the full list of key modifier aliases:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line">methods: &#123;</span><br><span class="line">  say: <span class="function"><span class="keyword">function</span> (<span class="params">msg, event</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// agora nós temos acesso ao evento nativo</span></span><br><span class="line">    event.preventDefault()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Modificadores_de_Eventos">Modificadores de Eventos</h2><p>Ao lidar com eventos, é muito comum você utilizar métodos como o <code>event.preventDefault()</code> ou <code>event.stopPropagation()</code> para modificar o comportamento do evento. Apesar de poder fazer isso facilmente dentro do método, seria ainda melhor pudéssemos lidar somente com a lógica que estamos desenvolvendo, ao invés de lidar com detalhes dos eventos do DOM.</p>
+<p>Para lidar com esse problema, o Vue.js fornece dois <strong>modificadores de evento</strong> para a diretiva <code>v-on</code>: <code>.prevent</code> e <code>.stop</code>. Lembre-se que modificadores são sufixos de diretivas, e representados com um ponto:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- a propagação do evento Click será parada --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">v-on:click.stop</span>=<span class="value">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- o evento de submit não irá mais recarregar a página --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">form</span> <span class="attribute">v-on:submit.prevent</span>=<span class="value">"onSubmit"</span>&gt;</span><span class="tag">&lt;/<span class="title">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- os modificadores podem ser encadeados --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">v-on:click.stop.prevent</span>=<span class="value">"doThat"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Modificadores_de_Teclas">Modificadores de Teclas</h2><p>Ao lidar com eventos do teclado, geralmente precisamos verficar o código da tecla digitada. O Vue.js também permite que você adicione o um modificador para essa situação na diretiva <code>v-on</code>:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- somente chame o mé<span class="doctag"><span class="keyword">todo</span></span> vm.submit() quando o código da tecla for igual a 13 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">v-on:keyup.13</span>=<span class="value">"submit"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Lembrar o código das teclas é algo trabalhoso, então o Vue.js fornece alguns pseudônimos para as teclas mais utilizadas:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- idem ao exemplo anterior --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">v-on:keyup.enter</span>=<span class="value">"submit"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- também funciona para abreviações --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> @<span class="attribute">keyup.enter</span>=<span class="value">"submit"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Aqui temos a lista completa com os pseudõnimos para as teclas:</p>
 <ul>
 <li>enter</li>
 <li>tab</li>
@@ -227,13 +227,13 @@ new Vue({
 <li>left</li>
 <li>right</li>
 </ul>
-<h2 id="Why_Listeners_in_HTML?">Why Listeners in HTML?</h2><p>You might be concerned that this whole event listening approach violates the good old rules about “separation of concern”. Rest assured - since all Vue.js handler functions and expressions are strictly bound to the ViewModel that’s handling the current View, it won’t cause any maintenance difficulty. In fact, there are several benefits in using <code>v-on</code>:</p>
+<h2 id="Por_que_manipular_eventos_no_HTML?">Por que manipular eventos no HTML?</h2><p>Você deve estar se perguntando se toda essa coisa de manipular os eventos não violam as regras de ouro sobre “Separação de conceitos”. Fique tranquilo - todas as funções de manipulações e expressões do Vue.js estão estritamente ligadas ao <i>ViewModel</i> que está vinculado a sua <i>View</i>, isso não acarretará dificuldade na manutenção. Na verdade, existem vários benefícios ao utilizar o <code>v-on</code>:</p>
 <ol>
-<li><p>It makes it easier to locate the handler function implementations within your JS code by simply skimming the HTML template.</p>
+<li><p>Facilita a identificação das funções que lidam com os eventos no seu código JS só de olhar no código HTML.</p>
 </li>
-<li><p>Since you don’t have to manually attach event listeners in JS, your ViewModel code can be pure logic and DOM-free. This makes it easier to test.</p>
+<li><p>Como você não tem que manualmente anexar os manipuladores de evento no seu JS, seu <i>ViewModel</i> pode ser composto apenas por lógica e sem manipulações do DOM. Isso faz com que ele seja mais fácil de ser testado.</p>
 </li>
-<li><p>When a ViewModel is destroyed, all event listeners are automatically removed. You don’t need to worry about cleaning it up yourself.</p>
+<li><p>Quando um <i>ViewModel</i> é destruído, todo código responsável por lidar com a manipulação do evento é destruído automaticamente. Você não precisa se preocupar em realizar essa limpeza.</p>
 </li>
 </ol>
 

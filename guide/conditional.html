@@ -89,7 +89,7 @@
                 </li>
             
                 <li>
-                    <a href="/vuejs.org/guide/computed.html" class="sidebar-link">Propriedades Computadas</a>
+                    <a href="/vuejs.org/guide/computed.html" class="sidebar-link">Computed Properties</a>
                 </li>
             
                 <li>
@@ -158,7 +158,7 @@
     <div id="ad">
         <!--<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=vuejs" id="_carbonads_js"></script>-->
     </div>
-    <h2 id="v-if">v-if</h2><p>Em templates de texto puro, por exemplo, <i>Handlebars</i>, nos poderíamos escrever um bloco condicional como essse:</p>
+    <h2 id="v-if">v-if</h2><p>Em templates de texto puro, por exemplo, Handlebars, nos poderíamos escrever um bloco condicional como essse:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Handlebars template --&gt;</span></span><br><span class="line">&#123;&#123;#if ok&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Yes<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></span><br><span class="line">&#123;&#123;/if&#125;&#125;</span><br></pre></td></tr></table></figure>
 <p>Com Vue.js, nós usamos a diretiva <code>v-if</code> para atingir o mesmo resultado:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">h1</span> <span class="attribute">v-if</span>=<span class="value">"ok"</span>&gt;</span>Yes<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -173,7 +173,7 @@
 <h2 id="v-else">v-else</h2><p>Você pode adicionar uma diretiva <code>v-else</code> para indicar um “bloco else” para o <code>v-if</code> ou o <code>v-show</code>:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-if</span>=<span class="value">"Math.random() &gt; 0.5"</span>&gt;</span></span><br><span class="line">  Sorry</span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-else</span>&gt;</span></span><br><span class="line">  Not sorry</span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>O elemento <code>v-else</code> precisa ser o primeiro elemento após o <code>v-if</code> ou <code>v-show</code> - caso contrário ele não será reconhecido.</p>
-<h2 id="v-if_vs-_v-show">v-if vs. v-show</h2><p>Quando o status de um <code>v-if</code> é alternado, o Vue.js terá que realizar um processo de compilação/destruição parcial, porque o template dentro do <code>v-if</code> pode conter <i>data bindings</i> ou componentes filhos. O <code>v-if</code> é uma renderização condicional “real” porque ele garante que os observadores de eventos e componentes filhos dentro do bloco condicional sejam propriamente destruídos e recriados durante as alternâncias de valor do <code>v-if</code>.</p>
+<h2 id="v-if_vs-_v-show">v-if vs. v-show</h2><p>Quando o status de um <code>v-if</code> é alternado, o Vue.js terá que realizar um processo de compilação/destruição parcial, porque o template dentro do <code>v-if</code> pode conter data bindings ou componentes filhos. O <code>v-if</code> é uma renderização condicional “real” porque ele garante que os observadores de eventos e componentes filhos dentro do bloco condicional sejam propriamente destruídos e recriados durante as alternâncias de valor do <code>v-if</code>.</p>
 <p><code>v-if</code> também é <strong>preguiçoso</strong>: se a condição for falsa na renderização inicial, ele não fará nada - a compilação parcial não será iniciada até que a condição se torne verdade pela primeira vez (e a compilação passa a ser realizava via cache subsequentemente).</p>
 <p>Em comparação, o <code>v-show</code> é muito mais simples - o elemento sempre é compilado e preservado, simplesmente com a troca de uma propriedade CSS.</p>
 <p>Em termos gerais, a alternância das renderizações de um <code>v-if</code> possui um custo maior para sua aplicação, enquanto o <code>v-show</code> irá custar mais na renderização inicial. Então prefira o uso do <code>v-show</code> se você precisa mostrar/esconder algo muitas vezes, e prefira o <code>v-if</code> se a condição é pouco alternada durante a execução.</p>
