@@ -5,7 +5,7 @@ order: 7
 
 ## v-if
 
-Em templates de texto puro, por exemplo, <i>Handlebars</i>, nos poderíamos escrever um bloco condicional como essse:
+Em templates de texto puro, por exemplo, Handlebars, nos poderíamos escrever um bloco condicional como essse:
 
 ``` html
 <!-- Handlebars template -->
@@ -68,7 +68,7 @@ O elemento `v-else` precisa ser o primeiro elemento após o `v-if` ou `v-show` -
 
 ## v-if vs. v-show
 
-Quando o status de um `v-if` é alternado, o Vue.js terá que realizar um processo de compilação/destruição parcial, porque o template dentro do `v-if` pode conter <i>data bindings</i> ou componentes filhos. O `v-if` é uma renderização condicional "real" porque ele garante que os observadores de eventos e componentes filhos dentro do bloco condicional sejam propriamente destruídos e recriados durante as alternâncias de valor do `v-if`.
+Quando o status de um `v-if` é alternado, o Vue.js terá que realizar um processo de compilação/destruição parcial, porque o template dentro do `v-if` pode conter data bindings ou componentes filhos. O `v-if` é uma renderização condicional "real" porque ele garante que os observadores de eventos e componentes filhos dentro do bloco condicional sejam propriamente destruídos e recriados durante as alternâncias de valor do `v-if`.
 
 `v-if` também é **preguiçoso**: se a condição for falsa na renderização inicial, ele não fará nada - a compilação parcial não será iniciada até que a condição se torne verdade pela primeira vez (e a compilação passa a ser realizava via cache subsequentemente).
 

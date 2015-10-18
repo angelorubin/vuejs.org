@@ -1,9 +1,9 @@
-title: Propriedades Computadas
+title: Computed Properties
 type: guide
 order: 5
 ---
 
-Expressões dentro de templates são convenientes, mas elas deveriam ser utilizadas somente para operações. Templates são destinados para descrever a estrutura da sua <i>view</i>. Colocar muita lógica nos seus templates pode fazer que com eles fiquem inchados e com que a sua manutenção fique mais complicada. É por esse motivo que o Vue.js limita as expressões de ligação para somente uma expressão. Para qualquer lógica que precise de mais de uma linha, você deve utilizar uma **propriedade computada**.
+Expressões dentro de templates são convenientes, mas elas deveriam ser utilizadas somente para operações. Templates são destinados para descrever a estrutura da sua view. Colocar muita lógica nos seus templates pode fazer que com eles fiquem inchados e com que a sua manutenção fique mais complicada. É por esse motivo que o Vue.js limita as expressões de ligação para somente uma expressão. Para qualquer lógica que precise de mais de uma linha, você deve utilizar uma **computed property**.
 
 ### Exemplo Básico
 
@@ -50,7 +50,7 @@ var vm = new Vue({
 </script>
 {% endraw %}
 
-Aqui nós declaramos a propriedade computada `b`. A função que nós fornecemos será utilizada como um <i>getter</i> para a propriedade `vm.b`:
+Aqui nós declaramos a computed property `b`. A função que nós fornecemos será utilizada como um getter para a propriedade `vm.b`:
 
 ``` js
 console.log(vm.b) // -> 2
@@ -61,11 +61,11 @@ console.log(vm.b) // -> 3
 Você pode abrir o console e brincar com o exemplo. O valor de `vm.b` sempre dependerá do valor da propriedade `vm.a`.
 
 
-Você pode vincular uma propriedade computada em seus templates exatamente como você faz com uma propriedade normal. O Vue é capaz de reconhecer que a propriedade `vm.b` depende de `vm.a`, então ele vai atualizar todos os valores que dependem de `vm.b` quando a propriedade `vm.a` mudar. E a melhor parte é que nós criamos essa dependência de uma forma absolutamente declarativa: a função <i>getter</i> da propriedade computada é pura e não tem efeitos colaterais, o que faz com que seja fácil para testar e compreender.
+Você pode vincular uma computed property em seus templates exatamente como você faz com uma propriedade normal. O Vue é capaz de reconhecer que a propriedade `vm.b` depende de `vm.a`, então ele vai atualizar todos os valores que dependem de `vm.b` quando a propriedade `vm.a` mudar. E a melhor parte é que nós criamos essa dependência de uma forma absolutamente declarativa: a função getter da computed property é pura e não tem efeitos colaterais, o que faz com que seja fácil para testar e compreender.
 
-### Propriedades Computadas vs. $watch
+### Computed Properties vs. $watch
 
-A API do Vue.js fornece um método chamado`$watch` que permite você observar as mudanças dos dados na instância do Vue. Quando você tem algum dado que precisa ser atualizado baseado em outro dado, é tentador utilizar o `$watch` - especialmente se você estiver vindo de um background AngularJS. Entretanto, geralmente é uma melhor ideia você utilizar uma propriedade computada, ao invés de utilizar o callback imperativo do `$watch`. Considere esse exemplo:
+A API do Vue.js fornece um método chamado`$watch` que permite você observar as mudanças dos dados na instância do Vue. Quando você tem algum dado que precisa ser atualizado baseado em outro dado, é tentador utilizar o `$watch` - especialmente se você estiver vindo de um background AngularJS. Entretanto, geralmente é uma melhor ideia você utilizar uma computed property, ao invés de utilizar o callback imperativo do `$watch`. Considere esse exemplo:
 
 ``` html
 <div id="demo">{{fullName}}</div>
@@ -89,7 +89,7 @@ vm.$watch('lastName', function (val) {
 })
 ```
 
-O código acima é imperativo e repetitivo. Compare com sua versão que utiliza propriedades computadas:
+O código acima é imperativo e repetitivo. Compare com sua versão que utiliza computed properties:
 
 ``` js
 var vm = new Vue({
@@ -107,9 +107,9 @@ var vm = new Vue({
 
 Muito melhor, não acha?
 
-### <i>Setter</i> Computado
+### Computed Setter
 
-As propriedades computadas por padrão são somente para visualização, mas você pode criar um métodod <i>setter</i> quando precisar:
+Computed properties por padrão são somente para visualização, mas você pode criar um métodod setter quando precisar:
 
 ``` js
 // ...
@@ -130,6 +130,6 @@ computed: {
 // ...
 ```
 
-Agora, quando você chamar `vm.fullName = 'John Doe'`, o <i>setter</i> será invocado e os valores de `vm.firstName` e `vm.lastName` serão atualizados de acordo.
+Agora, quando você chamar `vm.fullName = 'John Doe'`, o setter será invocado e os valores de `vm.firstName` e `vm.lastName` serão atualizados de acordo.
 
-Os detalhes técnicos por trás de como as propriedades computadas são atualizadas serão [discutidas em outra seção](reactivity.html#Inside_Computed_Properties) dedicada exclusivamente ao sistema de reatividade.
+Os detalhes técnicos por trás de como as computed properties são atualizadas serão [discutidas em outra seção](reactivity.html#Inside_Computed_Properties) dedicada exclusivamente ao sistema de reatividade.
