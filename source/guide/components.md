@@ -1,13 +1,13 @@
-title: Components
+title: Componentes
 type: guide
 order: 12
 ---
 
-## Using Components
+## Utilizando Componentes
 
-### Registration
+### Registrando
 
-We've learned in the previous sections that we can create a component constructor using `Vue.extend()`:
+Nós aprendemos nas seções anteriores que podemos criar um componente construtor utilizando `Vue.extend()`:
 
 ``` js
 var MyComponent = Vue.extend({
@@ -15,14 +15,14 @@ var MyComponent = Vue.extend({
 })
 ```
 
-To use this constructor as a component, you need to **register** it with `Vue.component(tag, constructor)`:
+Para usar esse construtor como um componente, você precisa **registar-lo** com `Vue.component(tag, constructor)`:
 
 ``` js
-// Globally register the component with tag: my-component
+// Registrando globalmente o componente com a tag: my-component
 Vue.component('my-component', MyComponent)
 ```
 
-Once registered, the component can now be used in a parent instance's template as a custom element, `<my-component>`. Make sure the component is registered **before** you instantiate your root Vue instance. Here's the full example:
+Uma vez registrado, o componente agora pode ser utilizado no template de uma instância pai como um elemento personalizado, `<my-component>`. Verifique se o componente está **registrado** antes de você criar sua instância raiz Vue. Aqui está o exemplo completo:
 
 ``` html
 <div id="example">
@@ -31,21 +31,21 @@ Once registered, the component can now be used in a parent instance's template a
 ```
 
 ``` js
-// define
+// definir
 var MyComponent = Vue.extend({
   template: '<div>A custom component!</div>'
 })
 
-// register
+// registrar
 Vue.component('my-component', MyComponent)
 
-// create a root instance
+// criar uma instância raiz
 new Vue({
   el: '#example'
 })
 ```
 
-Which will render:
+A qual será renderizada:
 
 ``` html
 <div id="example">
@@ -65,11 +65,11 @@ new Vue({ el: '#example' })
 </script>
 {% endraw %}
 
-Note the component's template **replaces** the custom element, which only serves as a **mounting point**. This behavior can be configured using the `replace` instance option.
+Note que o template do componente **substitui** o elemento personalizado, o qual só serve como um **ponto de montagem**. Este comportamento pode ser configurado utilizando a opção `replace` da instância.
 
-### Local Registration
+### Registrando Localmente
 
-You don't have to register every component globally. You can make a component available only in the scope of another component by registering it with the `components` instance option:
+Você não tem que registrar todos os componentes globalmente. Você pode fazer um componente disponível apenas no âmbito de um outro componente, registrando-o com a opção `components` da instância:
 
 ``` js
 var Child = Vue.extend({ /* ... */ })
@@ -77,25 +77,25 @@ var Child = Vue.extend({ /* ... */ })
 var Parent = Vue.extend({
   template: '...',
   components: {
-    // <my-component> will only be available in Parent's template
+    // <my-component> só estarão disponíveis no template Parent
     'my-component': Child
   }
 })
 ```
 
-The same encapsulation applies for other assets types such as directives, filters and transitions.
+O mesmo encapsulamento se aplica para outros tipos de ativos, como as diretivas, filtros e transições.
 
 ### Registration Sugar
 
-To make things easier, you can directly pass in the options object instead of an actual constructor to `Vue.component()` and the `component` option. Vue.js will automatically call `Vue.extend()` for you under the hood:
+Para facilitar as coisas, você pode passar diretamente nas opções do objeto em vez de um construtor real para `Vue.component ()` e a opção `component`. Vue.js chamará automaticamente `Vue.extend ()` para você internamente:
 
 ``` js
-// extend and register in one step
+// estender e registrar em uma única etapa
 Vue.component('my-component', {
   template: '<div>A custom component!</div>'
 })
 
-// also works for local registration
+// também funciona para registro local
 var Parent = Vue.extend({
   components: {
     'my-component': {
@@ -105,9 +105,9 @@ var Parent = Vue.extend({
 })
 ```
 
-### Component Option Caveats
+### Opções de Componentes - Ressalvas
 
-Most of the options that can be passed into the Vue constructor can be used in `Vue.extend()`, with two special cases: `data` and `el`. Imagine we simply pass an object as `data` to `Vue.extend()`:
+A maioria das opções que podem ser passadas para o construtor Vue podem ser utilizadas em `Vue.extend ()`, com dois casos especiais: `data` e` el`. Imagine que simplesmente passamos um objeto como `data` para `Vue.extend ()`:
 
 ``` js
 var data = { a: 1 }
@@ -116,7 +116,7 @@ var MyComponent = Vue.extend({
 })
 ```
 
-The problem with this is that the same `data` object will be shared across all instances of `MyComponent`! This is most likely not what we want, so we should use a function that returns a fresh object as the `data` option:
+O problema com isto é que o mesmo objeto `data` será compartilhado entre todas as instâncias de `MyComponent`! Isto provavelmente não é o que queremos, por isso, devemos utilizar uma função que retorna um novo objeto na opção `data`:
 
 ``` js
 var MyComponent = Vue.extend({
@@ -126,11 +126,11 @@ var MyComponent = Vue.extend({
 })
 ```
 
-The `el` option also requires a function value when used in `Vue.extend()`, for exactly the same reason.
+A opção `el` também exige um valor na função quando usado em `Vue.extend ()`, exatamente pela mesma razão.
 
-### `is` attribute
+### atributo `is`
 
-Some HTML elements, for example `<table>`, has restrictions on what elements can appear inside it. Custom elements that are not in the whitelist will be hoisted out and thus not render properly. In such cases you should use the `is` special attribute to indicate a custom element:
+Alguns elementos HTML, por exemplo `<table>`, tem restrições sobre quais os elementos que podem aparecer no seu interior. Elementos personalizados que não estão na lista de permissões serão içados para fora e, portanto, não processados corretamente. Nesses casos, você deve usar o atributo especial `is` para indicar um elemento personalizado:
 
 ``` html
 <table>
@@ -140,23 +140,23 @@ Some HTML elements, for example `<table>`, has restrictions on what elements can
 
 ## Props
 
-### Passing Data with Props
+### Passando Dados com Props
 
-Every component instance has its own **isolated scope**. This means you cannot (and should not) directly reference parent data in a child component's template. Data can be passed down to child components using **props**.
+Cada instância do componente tem seu próprio **escopo isolado**. Isto significa que você não pode (e não deve) referenciar diretamente dados do pai no template de um componente filho. Os dados podem ser transmitidos a componentes filhos utilizando **props**.
 
-A "prop" is a field on a component's data that is expected to be passed down from its parent component. A child component needs to explicitly declare the props it expects to receive using the [`props` option](/api/options.html#props):
+A "prop" é um campo nos dados de um componente que é esperada para ser transmitida a partir do seu componente pai. Um componente filho precisa declarar explicitamente as props que espera receber usando o [opção `props`](/api/options.html#props):
 
 ``` js
 Vue.component('child', {
-  // declare the props
+  // declarar a props
   props: ['msg'],
-  // the prop can be used inside templates, and will also
-  // be set as `this.msg`
+  // a prop pode ser usada dentro de templates, e também será 
+  // definida como `this.msg`
   template: '<span>{{ msg }}</span>'
 })
 ```
 
-Then, we can pass a plain string to it like so:
+Então, podemos passar uma string simples a ela assim:
 
 ``` html
 <child msg="hello!"></child>
@@ -181,24 +181,27 @@ new Vue({
 </script>
 {% endraw %}
 
-### camelCase vs. kebab-case
+### camelCase versus kebab-case
 
 HTML attributes are case-insensitive. When using camelCased prop names as attributes, you need to use their kebab-case (hyphen-delimited) equivalents:
 
+Atributos HTML são case-insensitive. Quando utilizar nomes de propriedades camelCase como atributos, você precisa usar seus equivalentes kebab-case (delimitado por hífen):
+
 ``` js
 Vue.component('child', {
-  // camelCase in JavaScript
+  // camelCase no JavaScript
   props: ['myMessage'],
   template: '<span>{{ myMessage }}</span>'
 })
 ```
 
 ``` html
-<!-- kebab-case in HTML -->
+<!-- kebab-case no HTML -->
 <child my-message="hello!"></child>
 ```
 
 ### Dynamic Props
+### Propriedades Dinâmicas
 
 Similar to binding a normal attribute to an expression, we can also use `v-bind` for dynamically binding props to data on the parent. Whenever the data is updated in the parent, it will also flow down to the child:
 
